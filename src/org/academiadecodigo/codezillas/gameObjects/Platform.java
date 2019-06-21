@@ -10,6 +10,7 @@ public class Platform extends Picture {
 
     public Platform(int col, int row){
         pos = new Position(col,row);
+        platform = new Picture(pos.colToX(), pos.rowToY(), "resources/PlatformMiddleRow.png");
     }
 
     public void setPos(int x,int y){
