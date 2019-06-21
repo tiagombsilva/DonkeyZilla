@@ -1,6 +1,7 @@
 package org.academiadecodigo.codezillas;
 
 import org.academiadecodigo.codezillas.gameObjects.*;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -34,6 +35,11 @@ public class Game {
         enemy = new DonkeyZilla(10,0);
         enemy.draw();
 
+
+
+        player.init();
+
+
         //platforms[1].getPlatform().delete();
         LevelFactory.level1();
         //TESTING GODZILLA RIGHT MOVEMENT
@@ -46,6 +52,11 @@ public class Game {
                 e.printStackTrace();
             }
         }
+
+
+
+
+
 
 
 
