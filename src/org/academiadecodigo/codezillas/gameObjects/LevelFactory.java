@@ -6,7 +6,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class LevelFactory {
 
-    private static Object[] gameObject = new Object[5];
+    private static Object[] gameObject = new Object[10];
 
     public static Object[] level1() {
 
@@ -85,6 +85,8 @@ public class LevelFactory {
         gameObject[1] = platforms;
         gameObject[2] = donkeyZilla;
         gameObject[3] = projectiles;
+        gameObject[4] = movementLogic;
+        gameObject[5] = player;
         return gameObject;
 
     }
