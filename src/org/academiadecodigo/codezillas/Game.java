@@ -47,11 +47,17 @@ public class Game {
             projectiles[0].fallingDown();
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(60);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
+            if (projectiles[0].getPos().getRow() == 800) {
+                projectiles[0].delete();
+                projectiles[0].setPos(0, 0);
+                projectiles[0].resetFireball();
+                projectiles[0].draw();
+            }
         }
 
 
