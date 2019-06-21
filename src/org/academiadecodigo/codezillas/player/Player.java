@@ -1,5 +1,6 @@
-package org.academiadecodigo.codezillas.gameObjects;
+package org.academiadecodigo.codezillas.player;
 
+import org.academiadecodigo.codezillas.gameObjects.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player {

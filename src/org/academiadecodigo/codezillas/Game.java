@@ -1,6 +1,7 @@
 package org.academiadecodigo.codezillas;
 
 import org.academiadecodigo.codezillas.gameObjects.*;
+import org.academiadecodigo.codezillas.player.Player;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -51,12 +52,6 @@ public class Game {
                         projectiles[i+1].setMoving();
                     }
                 }
-
-
-
-
-
-
 
                 try {
                     Thread.sleep(70);

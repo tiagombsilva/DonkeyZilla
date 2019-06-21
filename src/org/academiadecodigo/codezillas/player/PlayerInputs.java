@@ -1,4 +1,4 @@
-package org.academiadecodigo.codezillas.Movement;
+package org.academiadecodigo.codezillas.player;
 
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -6,13 +6,12 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
-public class KeyboardListener implements KeyboardHandler {
+public class PlayerInputs implements KeyboardHandler {
 
-    private Movable movable;
 
-    public KeyboardListener(Movable movable) {
 
-        this.movable = movable;
+
+    public PlayerInputs(Movable movable) {
 
         Keyboard keyboard = new Keyboard(this);
 
@@ -48,12 +47,12 @@ public class KeyboardListener implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-        movable.translate(0, 10);
+
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-        movable.translate(0,-10);
+
     }
 
 
