@@ -11,7 +11,7 @@ public class DonkeyZilla {
         Platform[] platforms;
 
        Canvas canvas = new Canvas();
-       canvas.init();
+       //canvas.init();
 
         Picture background = new Picture(0,0,"resources/Background.png");
         background.draw();

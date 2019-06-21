@@ -22,7 +22,7 @@ public class Game {
         background.draw();
 
         platforms = new Platform[30];
-
+/*
         for (int i= 0; i<platforms.length;i++){
 
             platforms[i] = new Platform(i,19);
@@ -32,7 +32,10 @@ public class Game {
 
 
         platforms[1].getPlatform().delete();
+*/
 
+    player = new Player(15, 18);
+    player.draw();
 
 
 
