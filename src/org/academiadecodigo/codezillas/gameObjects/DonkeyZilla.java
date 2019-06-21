@@ -30,13 +30,13 @@ public class DonkeyZilla extends Picture {
 
     public void moveRight() {
         pos.setCol(pos.getCol() + 5);
+        donkeyZilla.load("resources/GodZillaRightDirection.png");
         donkeyZilla.translate(5, 0);
-        donkeyZilla = new Picture(pos.colToX(), pos.rowToY(), "resources/GodZillaRightDirection.png");
     }
 
     public void moveLeft() {
-        donkeyZilla = new Picture(pos.colToX(), pos.rowToY(), "resources/GodZillaLeftDirection.png");
         pos.setCol(pos.getCol() - 5);
+        donkeyZilla.load("resources/GodZillaLeftDirection.png");
         donkeyZilla.translate(- 5,0);
     }
 

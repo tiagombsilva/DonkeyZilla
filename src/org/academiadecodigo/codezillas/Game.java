@@ -38,7 +38,7 @@ public class Game {
 
         //TESTING GODZILLA RIGHT MOVEMENT
         while (true) {
-            enemy.moveRight();
+            enemy.moveLeft();
 
             try {
                 Thread.sleep(50);
