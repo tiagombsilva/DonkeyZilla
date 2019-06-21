@@ -1,3 +1,4 @@
+
 package org.academiadecodigo.codezillas;
 
 import org.academiadecodigo.codezillas.gameObjects.Platform;
