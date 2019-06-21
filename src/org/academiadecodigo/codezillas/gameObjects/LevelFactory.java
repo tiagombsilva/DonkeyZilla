@@ -1,5 +1,7 @@
 package org.academiadecodigo.codezillas.gameObjects;
 
+import org.academiadecodigo.codezillas.player.MovementLogic;
+import org.academiadecodigo.codezillas.player.Player;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class LevelFactory {
@@ -8,6 +10,8 @@ public class LevelFactory {
 
     public static Object[] level1() {
 
+        Player player = new Player(1, 19);
+        MovementLogic movementLogic = new MovementLogic(player);
         Platform[] platforms = new Platform[150];
         Picture background;
         DonkeyZilla donkeyZilla;

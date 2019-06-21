@@ -1,10 +1,11 @@
 package org.academiadecodigo.codezillas.player;
 
 import org.academiadecodigo.codezillas.gameObjects.Position;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Player {
-
+public class Player implements KeyboardHandler {
 
     private int lives;
     private Position pos;
@@ -32,7 +33,11 @@ public class Player {
 
     }
 
-    public void move() {
+    public void moveRight() {
+
+    }
+
+    public void moveLeft(){
 
     }
 
@@ -49,4 +54,16 @@ public class Player {
     }
 
 
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_LEFT) {
+
+            this.moveLeft();
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyboardEvent keyboardEvent) {
+
+    }
 }
