@@ -1,45 +1,70 @@
 package org.academiadecodigo.codezillas;
 
 import org.academiadecodigo.codezillas.gameObjects.*;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
+    private static int levelCounter = 1;
+
     public static void main(String[] args) {
 
-        Platform[] platforms;
-        Canvas canvas;
+        Platform[] platforms = null;
+        Picture background;
         Player player;
         DonkeyZilla enemy;
-        Projectile[] projectile;
+        Projectile[] projectiles = null;
         CollisionDetector collisionDetector;
-        
+
+        if (levelCounter == 1) {
+
+            Object[] gameObjects = LevelFactory.level1();
+            for (Object object : gameObjects) {
+                if (object instanceof Picture) {
+                    background = (Picture) object;
+                }
+
+                if (object instanceof Platform[]) {
+                    platforms = (Platform[]) object;
+                }
+
+                if (object instanceof DonkeyZilla) {
+                    enemy = (DonkeyZilla) object;
+                }
+
+                if (object instanceof Projectile[]) {
+                    projectiles = (Projectile[]) object;
+                }
+
+                if (object instanceof Player) {
+                    player = (Player) object;
+                }
+            }
+
+            while (true) {
+                int rng = (int) (Math.random() * projectiles.length + 1);
+
+                for (int i = 0; i < projectiles.length-1; i++) {
+                    projectiles[i].fallingDown();
+
+                    if (projectiles[i].isMoving() && projectiles[i].isMiddleScreenPosition()) {
+                        projectiles[i+1].setMoving();
+                    }
+                }
 
 
-        /////TEST DRIVE
 
-        Picture background = new Picture(0,0,"resources/Background.png");
-        background.draw();
 
-        platforms = new Platform[30];
 
-        for (int i= 0; i<platforms.length;i++){
 
-            platforms[i] = new Platform(i,19);
-            platforms[i].draw();
 
+                try {
+                    Thread.sleep(70);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
         }
-
-
-        platforms[1].getPlatform().delete();
-
-
-
-
-
-
     }
-
 }
