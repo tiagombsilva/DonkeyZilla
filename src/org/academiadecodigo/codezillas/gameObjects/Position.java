@@ -1,4 +1,6 @@
-package org.academiadecodigo.codezillas;
+package org.academiadecodigo.codezillas.gameObjects;
+
+import org.academiadecodigo.codezillas.Canvas;
 
 public class Position {
 
