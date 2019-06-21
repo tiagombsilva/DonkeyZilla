@@ -11,7 +11,7 @@ public class Game {
         Canvas canvas;
         Player player;
         DonkeyZilla enemy;
-        Projectile[] projectile;
+        Projectile[] projectiles;
         CollisionDetector collisionDetector;
         
 
@@ -30,8 +30,32 @@ public class Game {
 
         }
 
+        ////PROJECTILE TESTS
 
-        platforms[1].getPlatform().delete();
+        projectiles = new Projectile[15];
+        int positionPlacer = 0;
+
+        for (int i = 0; i<projectiles.length; i++) {
+
+            projectiles[i] = new Projectile(i + positionPlacer,0);
+            projectiles[i].draw();
+            positionPlacer += 1;
+        }
+
+        while(true) {
+
+            projectiles[0].fallingDown();
+
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+        //platforms[1].getPlatform().delete();
 
 
 
