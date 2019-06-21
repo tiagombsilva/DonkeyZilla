@@ -16,19 +16,7 @@ public class Game {
         
 
 
-        /////TEST DRIVE
 
-        Picture background = new Picture(0,0,"resources/Background.png");
-        background.draw();
-
-        platforms = new Platform[30];
-
-        for (int i= 0; i<platforms.length;i++){
-
-            platforms[i] = new Platform(i,19);
-            platforms[i].draw();
-
-        }
 
         ////PROJECTILE TESTS
 
@@ -60,8 +48,9 @@ public class Game {
             }
         }
 
+        ///END PROJECTILE TESTS
 
-        //platforms[1].getPlatform().delete();
+
 
 
 
