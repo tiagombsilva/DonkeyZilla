@@ -30,10 +30,22 @@ public class Game {
 
         }
 
+        //TESTING GODZILLA
+        enemy = new DonkeyZilla(10,0);
+        enemy.draw();
 
-        platforms[1].getPlatform().delete();
+        //platforms[1].getPlatform().delete();
 
+        //TESTING GODZILLA RIGHT MOVEMENT
+        while (true) {
+            enemy.moveLeft();
 
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
 
     }
