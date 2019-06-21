@@ -2,7 +2,7 @@ package org.academiadecodigo.codezillas.gameObjects;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Platform extends Picture {
+public class Platform {
 
     private Position pos;
     private Picture platform;
@@ -10,7 +10,11 @@ public class Platform extends Picture {
 
     public Platform(int col, int row){
         pos = new Position(col,row);
-        platform = new Picture(pos.colToX(), pos.rowToY(), "resources/PlatformMiddleRow.png");
+        platform = new Picture(pos.colToX(),pos.rowToY(),"resources/PlatformMiddleRow.png");
+    }
+
+    public Position getPos(){
+        return pos;
     }
 
     public void setPos(int x,int y){
@@ -22,16 +26,13 @@ public class Platform extends Picture {
         return platform;
     }
 
-    @Override
     public void delete(){
-        super.delete();
+        platform.delete();
         //Null pointer Expection
         pos = null;
     }
 
-    @Override
     public void draw(){
-        super.draw();
         platform.draw();
     }
 }

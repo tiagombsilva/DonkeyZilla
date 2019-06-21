@@ -34,13 +34,11 @@ public class Game {
         enemy = new DonkeyZilla(10,0);
         enemy.draw();
 
-        platforms[1].getPlatform().delete();
-        player = new Player(15, 18);
-        player.draw();
+        //platforms[1].getPlatform().delete();
+        LevelFactory.level1();
         //TESTING GODZILLA RIGHT MOVEMENT
         while (true) {
             enemy.moveLeft();
-
 
             try {
                 Thread.sleep(50);
@@ -48,6 +46,7 @@ public class Game {
                 e.printStackTrace();
             }
         }
+
 
 
     }
