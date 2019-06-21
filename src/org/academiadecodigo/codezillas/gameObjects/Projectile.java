@@ -5,34 +5,60 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Projectile extends Picture {
 
     private Position pos;
-
     private Picture fireball;
-
-    ///////Para parar o projetil uma beca quando chega ao fim do ecra, meter false dentro do IF e meter true no While!!!!
-    public boolean moving;
+    private boolean middleScreenPosition;
+    private boolean moving;
 
     public Projectile(int col, int row) {
         pos = new Position(col, row);
         fireball = new Picture(pos.colToX(),pos.rowToY(), "resources/FireProjectile.png");
     }
 
+    public boolean isMoving() {
+        return moving;
+    }
+
+    public void setMoving() {
+        this.moving = true;
+    }
+
     public Position getPos() {
         return pos;
     }
 
-    public void setPos(int x,int y) {
+    public  void setPos(int x,int y) {
         pos.setCol(x);
         pos.setRow(y);
     }
 
-    public void resetFireball() {
-        //fireball.translate(pos.colToX(), pos.rowToY());
+    public boolean isMiddleScreenPosition() {
+        return middleScreenPosition;
+    }
+
+    private void resetFireball() {
         fireball = new Picture(pos.colToX(), pos.rowToY(), "resources/FireProjectile.png");
     }
 
     public void fallingDown() {
-        pos.setRow(pos.getRow()+20);
-        fireball.translate(0,20);
+        if(moving) {
+            outOfBounds();
+            pos.setRow(pos.getRow() + 20);
+            fireball.translate(0, 20);
+
+            if (this.getPos().getRow() > 425) {
+                middleScreenPosition = true;
+            }
+        }
+    }
+
+    private void outOfBounds() {
+        if (this.getPos().getRow() > 850) {
+            this.setPos((int)(Math.random() * 30), -1);
+            this.resetFireball();
+            this.middleScreenPosition = false;
+            this.draw();
+
+        }
     }
 
     @Override

@@ -9,14 +9,14 @@ public class Game {
 
     public static void main(String[] args) {
 
-        Platform[] platforms;
+        Platform[] platforms = null;
         Picture background;
         Player player;
         DonkeyZilla enemy;
-        Projectile[] projectiles;
+        Projectile[] projectiles = null;
         CollisionDetector collisionDetector;
 
-        if(levelCounter == 1) {
+        if (levelCounter == 1) {
 
             Object[] gameObjects = LevelFactory.level1();
             for (Object object : gameObjects) {
@@ -41,10 +41,34 @@ public class Game {
                 }
             }
 
+            while (true) {
+                projectiles[0].setMoving();
+                int rng = (int) (Math.random() * projectiles.length + 1);
 
-            ////PROJECTILE TESTS
+                for (int i = 0; i < projectiles.length-1; i++) {
+                    projectiles[i].fallingDown();
 
-            projectiles = new Projectile[15];
+                    if (projectiles[i].isMoving() && projectiles[i].isMiddleScreenPosition()) {
+                        projectiles[i+1].setMoving();
+                    }
+                }
+
+
+
+
+
+
+
+                try {
+                    Thread.sleep(70);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+
+                ////PROJECTILE TESTS
+
+            /*projectiles = new Projectile[15];
             int positionPlacer = 0;
 
             for (int i = 0; i < projectiles.length; i++) {
@@ -54,7 +78,7 @@ public class Game {
                 positionPlacer += 1;
             }
 
-            for (int i = 0; i < 10; i++) {
+            while (true) {
 
                 projectiles[0].fallingDown();
 
@@ -68,12 +92,13 @@ public class Game {
                     projectiles[0].delete();
                     projectiles[0].setPos(0, 0);
                     projectiles[0].resetFireball();
-                    projectiles[0].draw();
-                }
+                    projectiles[0].draw();*/
+                // }
 
+                //}
             }
+
+
         }
-
-
     }
 }
