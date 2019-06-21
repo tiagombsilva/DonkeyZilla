@@ -1,6 +1,8 @@
 package org.academiadecodigo.codezillas;
 
 import org.academiadecodigo.codezillas.gameObjects.*;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -32,6 +34,8 @@ public class Game {
 
 
         platforms[1].getPlatform().delete();
+
+
 
 
 
