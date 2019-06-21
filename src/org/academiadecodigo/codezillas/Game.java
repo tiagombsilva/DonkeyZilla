@@ -22,7 +22,7 @@ public class Game {
         background.draw();
 
         platforms = new Platform[30];
-/*
+
         for (int i= 0; i<platforms.length;i++){
 
             platforms[i] = new Platform(i,19);
@@ -30,13 +30,24 @@ public class Game {
 
         }
 
+        //TESTING GODZILLA
+        enemy = new DonkeyZilla(10,0);
+        enemy.draw();
 
         platforms[1].getPlatform().delete();
-*/
+        player = new Player(15, 18);
+        player.draw();
+        //TESTING GODZILLA RIGHT MOVEMENT
+        while (true) {
+            enemy.moveLeft();
 
-    player = new Player(15, 18);
-    player.draw();
 
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
 
     }
