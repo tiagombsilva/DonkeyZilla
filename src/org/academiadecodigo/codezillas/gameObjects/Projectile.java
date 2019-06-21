@@ -8,7 +8,6 @@ public class Projectile extends Picture {
 
     private Picture fireball;
 
-
     ///////Para parar o projetil uma beca quando chega ao fim do ecra, meter false dentro do IF e meter true no While!!!!
     public boolean moving;
 

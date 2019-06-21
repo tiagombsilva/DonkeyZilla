@@ -1,22 +1,32 @@
 package org.academiadecodigo.codezillas.gameObjects;
 
+import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 public class LevelFactory {
 
-    private static Platform[] platforms = new Platform[150];
+    private static Object[] gameObject = new Object[5];
 
-    public static void level1(){
+    public static Object[] level1(){
+
+        Platform[] platforms = new Platform[150];
+        Picture background;
+        DonkeyZilla donkeyZilla;
+
+        donkeyZilla = new DonkeyZilla(10,6);
+        background = new Picture(0,0,"resources/Background.png");
+        background.draw();
 
         for(int i = 2; i < 20;i+=3){
             for(int y = 0; y < 30; y++){
                 platforms[y] = new Platform(y,i);
                 platforms[y].draw();
-
+/**
                 try {
                     Thread.sleep(25);
                 } catch (Exception e){
 
                 }
-
+**/
 
                 if(i == 2){
                     if((y==15) || (y==16)){
@@ -52,9 +62,14 @@ public class LevelFactory {
                         continue;
                     }
                 }
-
             }
         }
+
+        donkeyZilla.draw();
+        gameObject[0] = background;
+        gameObject[1] = platforms;
+        gameObject[2] = donkeyZilla;
+        return gameObject;
 
     }
 
