@@ -10,7 +10,7 @@ public class Game {
 
     public static void main(String[] args) {
 
-        Platform[] platforms = null;
+        Platform[][] platforms = null;
         Picture background;
         Player player = null;
         DonkeyZilla enemy;
@@ -27,8 +27,8 @@ public class Game {
                     background = (Picture) object;
                 }
 
-                if (object instanceof Platform[]) {
-                    platforms = (Platform[]) object;
+                if (object instanceof Platform[][]) {
+                    platforms = (Platform[][]) object;
                 }
 
                 if (object instanceof DonkeyZilla) {
@@ -47,19 +47,13 @@ public class Game {
             while (true) {
                 int rng = (int) (Math.random() * projectiles.length + 1);
 
-                for (int i = 0; i < projectiles.length-1; i++) {
+                for (int i = 0; i < projectiles.length - 1; i++) {
                     projectiles[i].fallingDown();
 
                     if (projectiles[i].isMoving() && projectiles[i].isMiddleScreenPosition()) {
-                        projectiles[i+1].setMoving();
+                        projectiles[i + 1].setMoving();
                     }
                 }
-
-                if(player.isFalling()){
-                    player.playerFall();
-                }
-
-                
 
                 try {
                     Thread.sleep(70);
@@ -67,7 +61,36 @@ public class Game {
                     e.printStackTrace();
                 }
 
+
+
+                    for (int i = 0; i < 20; i++) {
+                        for (int y = 0; y < 30; y++) {
+
+                            if(platforms[i][y] == null){
+
+                            }else if (platforms[i][y].getPos() != null){
+
+                                System.out.println(player.getPos().getRow() + "  " + player.getPos().getCol() + " || " + platforms[i][y].getPos().getRow() + " " + platforms[i][y].getPos().getCol());
+
+                                if (player.getPos().getCol() == platforms[i][y].getPos().getCol() || player.getPos().getRow() == platforms[i][y].getPos().getRow()) {
+                                    player.setFalling(false);
+
+                                } else {
+
+                                    player.setFalling(true);
+                                    player.playerFall();
+
+                                }
+                            }
+                        }
+
+                    }
+
+                player.playerFall();
+
             }
         }
+
+
     }
 }

@@ -1,8 +1,6 @@
 package org.academiadecodigo.codezillas.player;
 
 import org.academiadecodigo.codezillas.gameObjects.Position;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player{
@@ -10,7 +8,7 @@ public class Player{
     private int lives;
     private Position pos;
     private Picture princess;
-    private boolean isFalling = true;
+    private boolean isFalling =true;
 
     public Player (int col, int row){
         pos = new Position(col, row);
@@ -21,8 +19,17 @@ public class Player{
         return isFalling;
     }
 
+    public void setFalling(boolean fly){
+        isFalling = fly;
+    }
+
     public Position getPos(){
         return pos;
+    }
+
+    public void setPos(int x, int y) {
+        pos.setCol(x);
+        pos.setRow(y);
     }
 
     public Picture getPrincess(){
@@ -34,8 +41,10 @@ public class Player{
     }
 
     public void playerFall(){
-        pos.setRow(pos.getRow()+20);
-        princess.translate(0,20);
+        if(isFalling) {
+            pos.setRow(pos.getRow() + 1);
+            princess.translate(0, 40);
+        }
     }
 
 
@@ -44,15 +53,15 @@ public class Player{
     }
 
     public void moveRight() {
-        pos.setCol(pos.getCol() + 8);
+        pos.setCol(pos.getCol() + 1);
         //princess.load("resources/GodzillaRightDirection.png");
-        princess.translate(8, 0);
+        princess.translate(40, 0);
     }
 
     public void moveLeft(){
-        pos.setCol(pos.getCol() - 8);
+        pos.setCol(pos.getCol() -1);
         //princess.load("resources/GodzillaRightDirection.png");
-        princess.translate(-8, 0);
+        princess.translate(-40, 0);
     }
 
     public void endLevel() {

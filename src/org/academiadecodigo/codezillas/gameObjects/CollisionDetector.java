@@ -42,6 +42,10 @@ public class CollisionDetector {
         }
     }
 
+    public void detectorPlatform(){
+
+
+    }
 
 
 }

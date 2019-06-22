@@ -12,7 +12,7 @@ public class LevelFactory {
 
         Player player = new Player(1, 2);
         MovementLogic movementLogic = new MovementLogic(player);
-        Platform[] platforms = new Platform[150];
+        Platform[][] platforms = new Platform[20][30];
         Picture background;
         DonkeyZilla donkeyZilla;
         Projectile[] projectiles = new Projectile[10];
@@ -21,10 +21,9 @@ public class LevelFactory {
         background.draw();
 
 
-        for (int i = 4; i < 20; i += 3) {
+        for (int i = 0; i < 20; i ++) {
             for (int y = 0; y < 30; y++) {
-                platforms[y] = new Platform(y, i);
-                platforms[y].draw();
+
 /**
  try {
  Thread.sleep(25);
@@ -32,40 +31,39 @@ public class LevelFactory {
 
  }
  **/
-
-                if (i == 4) {
-                    if ((y == 15) || (y == 16)) {
-                        platforms[y].delete();
-                        continue;
-                    }
+                if(i == 4 || i == 7 || i == 10 || i == 13 || i == 16 || i == 19){
+                    platforms[i][y] = new Platform(y, i);
+                    platforms[i][y].draw();
                 }
 
-                if (i == 7) {
-                    if ((y == 0) || (y == 1)) {
-                        platforms[y].delete();
+                if (i == 4 && (y == 15 || y == 16)) {
+                        platforms[i][y].delete();
+                        platforms[i][y].setSolid(false);
                         continue;
-                    }
                 }
 
-                if (i == 10) {
-                    if ((y == 18) || (y == 19)) {
-                        platforms[y].delete();
+                if (i == 7 && (y == 0 || y == 1)) {
+                        platforms[i][y].delete();
+                        platforms[i][y].setSolid(false);
                         continue;
-                    }
                 }
 
-                if (i == 13) {
-                    if ((y == 2) || (y == 3)) {
-                        platforms[y].delete();
+                if (i == 10 && (y == 18 || y ==19)){
+                        platforms[i][y].delete();
+                        platforms[i][y].setSolid(false);
                         continue;
-                    }
                 }
 
-                if (i == 16) {
-                    if ((y == 16) || (y == 17)) {
-                        platforms[y].delete();
+                if (i == 13 && (y ==2 || y == 3)) {
+                        platforms[i][y].delete();
+                        platforms[i][y].setSolid(false);
                         continue;
-                    }
+                }
+
+                if (i == 16 && (y == 16 || y == 17)) {
+                        platforms[i][y].delete();
+                        platforms[i][y].setSolid(false);
+                        continue;
                 }
             }
         }

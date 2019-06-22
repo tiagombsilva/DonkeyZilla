@@ -7,8 +7,6 @@ public class Platform {
     private Position pos;
     private Picture platform;
     private boolean solid = true;
-    private int topCoord;
-    private int bottomCoord;
 
     public Platform(int col, int row){
         pos = new Position(col,row);
@@ -20,7 +18,15 @@ public class Platform {
 
     }
 
-    public void setPos(int x,int y){
+    public boolean isSolid(){
+        return this.solid;
+    }
+
+    public void setSolid(boolean solid) {
+        this.solid = solid;
+    }
+
+    public void setPos(int x, int y){
         pos.setCol(x);
         pos.setRow(y);
     }
