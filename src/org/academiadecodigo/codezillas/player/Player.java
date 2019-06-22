@@ -10,6 +10,7 @@ public class Player implements KeyboardHandler {
     private int lives;
     private Position pos;
     private Picture princess;
+    private boolean falling;
 
     public Player (int col, int row){
         pos = new Position(col, row);

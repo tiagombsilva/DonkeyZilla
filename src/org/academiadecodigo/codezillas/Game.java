@@ -20,6 +20,8 @@ public class Game {
         if (levelCounter == 1) {
 
             Object[] gameObjects = LevelFactory.level1();
+            collisionDetector = new CollisionDetector(gameObjects);
+
             for (Object object : gameObjects) {
                 if (object instanceof Picture) {
                     background = (Picture) object;

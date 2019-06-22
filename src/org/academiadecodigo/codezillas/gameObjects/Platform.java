@@ -7,6 +7,8 @@ public class Platform {
     private Position pos;
     private Picture platform;
     private boolean solid = true;
+    private int topCoord;
+    private int bottomCoord;
 
     public Platform(int col, int row){
         pos = new Position(col,row);
