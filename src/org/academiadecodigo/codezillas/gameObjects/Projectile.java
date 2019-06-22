@@ -15,7 +15,7 @@ public class Projectile extends Picture {
     public Projectile(int col, int row) {
         pos = new Position(col, row);
         fireball = new Picture(pos.colToX(),pos.rowToY(), "resources/FireProjectile.png");
-        hitbox = new Rectangle(pos.getCol(), pos.getRow(),40, 40);
+        hitbox = new Rectangle(pos.getCol(), pos.getRow(),40, 80);
     }
 
     public boolean isMoving() {

@@ -45,8 +45,6 @@ public class Game {
             }
 
             while (true) {
-                int rng = (int) (Math.random() * projectiles.length + 1);
-
                 for (int i = 0; i < projectiles.length - 1; i++) {
                     projectiles[i].fallingDown();
 
@@ -55,25 +53,30 @@ public class Game {
                     }
                 }
 
-                try {
-                    Thread.sleep(70);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-
+                //player.setFalling(true);
+                player.playerFall();
 
                 for (int i = 0; i < 20; i++) {
                     for (int y = 0; y < 30; y++) {
 
-                        if(platforms[i][y] == null) {
-                        } else if (platforms[i][y].hitbox.intersects(player.hitbox)){
+                        if (platforms[i][y] == null) {
+                        } else if (player.hitbox.intersects(platforms[i][y].hitbox)) {
                             player.setFalling(false);
+                        } /*else {
+                            player.setFalling(true);
+                            player.playerFall();
+                        }*/
+                    }
+                }
+                        try {
+                            Thread.sleep(70);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
                     }
                 }
             }
         }
-    }
-}
+
+
 

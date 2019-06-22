@@ -47,7 +47,7 @@ public class Player{
     public void playerFall(){
         if(isFalling) {
             pos.setRow(pos.getRow() + 1);
-            princess.translate(0, 40);
+            princess.translate(0, 1);
         }
     }
 

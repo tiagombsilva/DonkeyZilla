@@ -10,7 +10,7 @@ public class LevelFactory {
 
     public static Object[] level1() {
 
-        Player player = new Player(1, 2);
+        Player player = new Player(1, 1);
         MovementLogic movementLogic = new MovementLogic(player);
         Platform[][] platforms = new Platform[20][30];
         Picture background;
