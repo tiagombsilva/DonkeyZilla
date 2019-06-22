@@ -3,16 +3,20 @@ package org.academiadecodigo.codezillas.player;
 import org.academiadecodigo.codezillas.gameObjects.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.awt.*;
+
 public class Player{
 
     private int lives;
     private Position pos;
     private Picture princess;
-    private boolean isFalling =true;
+    private boolean isFalling = true;
+    public Rectangle hitbox;
 
     public Player (int col, int row){
         pos = new Position(col, row);
         princess = new Picture(pos.colToX(), pos.rowToY(), "resources/Princess.png");
+        hitbox = new Rectangle(pos.getCol(), pos.getRow(),40, 80);
     }
 
     public boolean isFalling() {

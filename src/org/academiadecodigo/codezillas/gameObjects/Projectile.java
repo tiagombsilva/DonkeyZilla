@@ -2,16 +2,20 @@ package org.academiadecodigo.codezillas.gameObjects;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.awt.*;
+
 public class Projectile extends Picture {
 
     private Position pos;
     private Picture fireball;
     private boolean middleScreenPosition;
     private boolean moving;
+    public Rectangle hitbox;
 
     public Projectile(int col, int row) {
         pos = new Position(col, row);
         fireball = new Picture(pos.colToX(),pos.rowToY(), "resources/FireProjectile.png");
+        hitbox = new Rectangle(pos.getCol(), pos.getRow(),40, 40);
     }
 
     public boolean isMoving() {

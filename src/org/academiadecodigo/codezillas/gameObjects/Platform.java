@@ -2,15 +2,19 @@ package org.academiadecodigo.codezillas.gameObjects;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.awt.*;
+
 public class Platform {
 
     private Position pos;
     private Picture platform;
     private boolean solid = true;
+    public Rectangle hitbox;
 
     public Platform(int col, int row){
         pos = new Position(col,row);
         platform = new Picture(pos.colToX(),pos.rowToY(),"resources/PlatformMiddleRow.png");
+        hitbox = new Rectangle(pos.getCol(), pos.getRow(),40, 40);
     }
 
     public Position getPos(){

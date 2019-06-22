@@ -63,34 +63,17 @@ public class Game {
 
 
 
-                    for (int i = 0; i < 20; i++) {
-                        for (int y = 0; y < 30; y++) {
+                for (int i = 0; i < 20; i++) {
+                    for (int y = 0; y < 30; y++) {
 
-                            if(platforms[i][y] == null){
-
-                            }else if (platforms[i][y].getPos() != null){
-
-                                System.out.println(player.getPos().getRow() + "  " + player.getPos().getCol() + " || " + platforms[i][y].getPos().getRow() + " " + platforms[i][y].getPos().getCol());
-
-                                if (player.getPos().getCol() == platforms[i][y].getPos().getCol() || player.getPos().getRow() == platforms[i][y].getPos().getRow()) {
-                                    player.setFalling(false);
-
-                                } else {
-
-                                    player.setFalling(true);
-                                    player.playerFall();
-
-                                }
-                            }
+                        if(platforms[i][y] == null) {
+                        } else if (platforms[i][y].hitbox.intersects(player.hitbox)){
+                            player.setFalling(false);
                         }
-
                     }
-
-                player.playerFall();
-
+                }
             }
         }
-
-
     }
 }
+
