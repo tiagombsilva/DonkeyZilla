@@ -5,16 +5,20 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Player implements KeyboardHandler {
+public class Player{
 
     private int lives;
     private Position pos;
     private Picture princess;
-    private boolean falling;
+    private boolean isFalling = true;
 
     public Player (int col, int row){
         pos = new Position(col, row);
         princess = new Picture(pos.colToX(), pos.rowToY(), "resources/Princess.png");
+    }
+
+    public boolean isFalling() {
+        return isFalling;
     }
 
     public Position getPos(){
@@ -29,17 +33,26 @@ public class Player implements KeyboardHandler {
         princess.draw();
     }
 
+    public void playerFall(){
+        pos.setRow(pos.getRow()+20);
+        princess.translate(0,20);
+    }
+
 
     public void jump() {
 
     }
 
     public void moveRight() {
-
+        pos.setCol(pos.getCol() + 8);
+        //princess.load("resources/GodzillaRightDirection.png");
+        princess.translate(8, 0);
     }
 
     public void moveLeft(){
-
+        pos.setCol(pos.getCol() - 8);
+        //princess.load("resources/GodzillaRightDirection.png");
+        princess.translate(-8, 0);
     }
 
     public void endLevel() {
@@ -54,17 +67,4 @@ public class Player implements KeyboardHandler {
         //GAME OVER
     }
 
-
-    @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
-        if (keyboardEvent.getKey() == KeyboardEvent.KEY_LEFT) {
-
-            this.moveLeft();
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
-
-    }
 }

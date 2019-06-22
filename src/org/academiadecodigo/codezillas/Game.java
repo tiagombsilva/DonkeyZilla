@@ -12,7 +12,7 @@ public class Game {
 
         Platform[] platforms = null;
         Picture background;
-        Player player;
+        Player player = null;
         DonkeyZilla enemy;
         Projectile[] projectiles = null;
         CollisionDetector collisionDetector;
@@ -54,6 +54,12 @@ public class Game {
                         projectiles[i+1].setMoving();
                     }
                 }
+
+                if(player.isFalling()){
+                    player.playerFall();
+                }
+
+                
 
                 try {
                     Thread.sleep(70);

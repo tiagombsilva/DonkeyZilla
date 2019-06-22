@@ -1,49 +1,46 @@
 package org.academiadecodigo.codezillas.gameObjects;
 
+import org.academiadecodigo.codezillas.Game;
 import org.academiadecodigo.codezillas.player.Player;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class CollisionDetector {
 
-    Platform[] platforms;
-    Player player;
-    DonkeyZilla enemy;
-    Projectile[] projectiles;
-    Object[] gameObjects;
+    static Platform[] platforms = null;
+    static Picture background;
+    static Player player;
+    static DonkeyZilla enemy;
+    static Projectile[] projectiles = null;
 
-    public CollisionDetector(Object[] gameObjects){
-        this.gameObjects = gameObjects;
-        this.init(gameObjects);
+
+    public CollisionDetector(Object[] object){
+        init(object);
     }
 
-    private void init(Object[] gameObjects){
-        for (Object object : gameObjects) {
+    private static void init(Object[] object){
 
-            if (object instanceof Platform[]) {
-                platforms = (Platform[]) object;
+        for (Object objects: object) {
+            if (objects instanceof Picture) {
+                background = (Picture) objects;
             }
 
-            if (object instanceof DonkeyZilla) {
-                enemy = (DonkeyZilla) object;
+            if (objects instanceof Platform[]) {
+                platforms = (Platform[]) objects;
             }
 
-            if (object instanceof Projectile[]) {
-                projectiles = (Projectile[]) object;
+            if (objects instanceof DonkeyZilla) {
+                enemy = (DonkeyZilla) objects;
             }
 
-            if (object instanceof Player) {
-                player = (Player) object;
+            if (objects instanceof Projectile[]) {
+                projectiles = (Projectile[]) objects;
+            }
+
+            if (objects instanceof Player) {
+                player = (Player) objects;
             }
         }
-
-
-
     }
-
-
-
-        
-
 
 
 

@@ -6,10 +6,11 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class MovementLogic implements KeyboardHandler {
 
     private Player player;
+    private PlayerInputs playerInputs;
 
     public MovementLogic(Player player) {
-
         this.player = player;
+        this.playerInputs = new PlayerInputs(this);
     }
 
     @Override
