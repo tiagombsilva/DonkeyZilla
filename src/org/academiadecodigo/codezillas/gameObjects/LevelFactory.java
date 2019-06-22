@@ -10,7 +10,7 @@ public class LevelFactory {
 
     public static Object[] level1() {
 
-        Player player = new Player(1, 19);
+        Player player = new Player(1, 2);
         MovementLogic movementLogic = new MovementLogic(player);
         Platform[] platforms = new Platform[150];
         Picture background;
@@ -81,6 +81,8 @@ public class LevelFactory {
         ///////
 
         donkeyZilla.draw();
+        player.draw();
+
         gameObject[0] = background;
         gameObject[1] = platforms;
         gameObject[2] = donkeyZilla;
