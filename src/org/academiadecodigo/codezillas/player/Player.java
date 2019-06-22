@@ -1,37 +1,19 @@
-package org.academiadecodigo.codezillas.gameObjects;
+package org.academiadecodigo.codezillas.player;
 
-import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
+import org.academiadecodigo.codezillas.gameObjects.Position;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public abstract class Player implements KeyboardHandler{
-
+public class Player implements KeyboardHandler {
 
     private int lives;
     private Position pos;
     private Picture princess;
-    private Keyboard keyboard;
 
     public Player (int col, int row){
         pos = new Position(col, row);
         princess = new Picture(pos.colToX(), pos.rowToY(), "resources/Princess.png");
-        keyboard = new Keyboard(this);
-    }
-
-    public void init(){
-
-        KeyboardEvent right = new KeyboardEvent();
-        right.setKey(KeyboardEvent.KEY_RIGHT);
-        right.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        KeyboardEvent left = new KeyboardEvent();
-        left.setKey(KeyboardEvent.KEY_LEFT);
-        left.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        keyboard.addEventListener(left);
-        keyboard.addEventListener(right);
     }
 
     public Position getPos(){
@@ -51,7 +33,11 @@ public abstract class Player implements KeyboardHandler{
 
     }
 
-    public void move() {
+    public void moveRight() {
+
+    }
+
+    public void moveLeft(){
 
     }
 
@@ -68,4 +54,16 @@ public abstract class Player implements KeyboardHandler{
     }
 
 
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_LEFT) {
+
+            this.moveLeft();
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyboardEvent keyboardEvent) {
+
+    }
 }

@@ -8,7 +8,7 @@ public class DonkeyZilla extends Picture {
 
     public DonkeyZilla(int col, int row) {
         pos = new Position(col,row);
-        donkeyZilla = new Picture(pos.colToX(), pos.rowToY(), "resources/GodZillaLeftDirection.png");
+        donkeyZilla = new Picture(pos.colToX(), pos.rowToY(), "resources/GodzillaLeftDirection.png");
     }
 
     public void setPos(int x, int y) {

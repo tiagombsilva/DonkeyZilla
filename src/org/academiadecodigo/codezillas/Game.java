@@ -1,65 +1,65 @@
 package org.academiadecodigo.codezillas;
 
 import org.academiadecodigo.codezillas.gameObjects.*;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
+import org.academiadecodigo.codezillas.player.Player;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
+    private static int levelCounter = 1;
+
     public static void main(String[] args) {
 
-        Platform[] platforms;
-        Canvas canvas;
+        Platform[] platforms = null;
+        Picture background;
         Player player;
         DonkeyZilla enemy;
-        Projectile[] projectile;
+        Projectile[] projectiles = null;
         CollisionDetector collisionDetector;
-        
 
+        if (levelCounter == 1) {
 
-        /////TEST DRIVE
+            Object[] gameObjects = LevelFactory.level1();
+            for (Object object : gameObjects) {
+                if (object instanceof Picture) {
+                    background = (Picture) object;
+                }
 
-        Picture background = new Picture(0,0,"resources/Background.png");
-        background.draw();
+                if (object instanceof Platform[]) {
+                    platforms = (Platform[]) object;
+                }
 
-        platforms = new Platform[30];
+                if (object instanceof DonkeyZilla) {
+                    enemy = (DonkeyZilla) object;
+                }
 
-        for (int i= 0; i<platforms.length;i++){
+                if (object instanceof Projectile[]) {
+                    projectiles = (Projectile[]) object;
+                }
 
-            platforms[i] = new Platform(i,19);
-            platforms[i].draw();
+                if (object instanceof Player) {
+                    player = (Player) object;
+                }
+            }
 
-        }
+            while (true) {
+                int rng = (int) (Math.random() * projectiles.length + 1);
 
-        //TESTING GODZILLA
-        enemy = new DonkeyZilla(10,0);
-        enemy.draw();
+                for (int i = 0; i < projectiles.length-1; i++) {
+                    projectiles[i].fallingDown();
 
+                    if (projectiles[i].isMoving() && projectiles[i].isMiddleScreenPosition()) {
+                        projectiles[i+1].setMoving();
+                    }
+                }
 
+                try {
+                    Thread.sleep(70);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-        player.init();
-
-
-        //platforms[1].getPlatform().delete();
-        LevelFactory.level1();
-        //TESTING GODZILLA RIGHT MOVEMENT
-        while (true) {
-            enemy.moveLeft();
-
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
-
-
-
-
-
-
-
-
     }
-
 }

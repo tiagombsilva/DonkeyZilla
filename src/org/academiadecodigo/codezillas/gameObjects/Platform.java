@@ -15,6 +15,7 @@ public class Platform {
 
     public Position getPos(){
         return pos;
+
     }
 
     public void setPos(int x,int y){
