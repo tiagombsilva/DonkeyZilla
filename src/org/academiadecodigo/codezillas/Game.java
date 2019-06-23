@@ -2,6 +2,7 @@ package org.academiadecodigo.codezillas;
 
 import org.academiadecodigo.codezillas.gameObjects.*;
 import org.academiadecodigo.codezillas.mainMenu.MainMenu;
+import org.academiadecodigo.codezillas.music.*;
 import org.academiadecodigo.codezillas.player.Player;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -18,6 +19,11 @@ public class Game {
     private static CollisionDetector collisionDetector;
     private static MainMenu menu;
     private static boolean gameOver = false;
+    private static GameMusic gameMusic = new GameMusic();
+    private static MenuMusic menuMusic = new MenuMusic();
+    private static GameOverMusic gameOverMusic = new GameOverMusic();
+    private static WinMusic winMusic = new WinMusic();
+    private static CreditsMusic creditsMusic = new CreditsMusic();
 
     public static void main(String[] args) {
 
@@ -104,6 +110,7 @@ public class Game {
     public static void initGame(int lvl) {
         if (levelCounter == 0) {
             menu = (MainMenu) LevelFactory.menu();
+            menuMusic.startMenuMusic();
             menu.menuLoop();
         }
 
