@@ -17,7 +17,7 @@ public class LevelFactory {
         Picture background;
         DonkeyZilla donkeyZilla;
         Projectile[] projectiles = new Projectile[10];
-        donkeyZilla = new DonkeyZilla(10, 6);
+        donkeyZilla = new DonkeyZilla(25, 5);
         background = new Picture(0, 0, "resources/Background.png");
         background.draw();
 

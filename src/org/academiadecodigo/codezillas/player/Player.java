@@ -17,7 +17,7 @@ public class Player {
 
     public Player(int col, int row) {
         pos = new Position(col, row);
-        guy = new Picture(pos.colToX(), pos.rowToY(), "resources/FireProjectile.png");
+        guy = new Picture(pos.colToX(), pos.rowToY(), "resources/PlayerRight.png");
     }
 
     public boolean isFalling() {
@@ -81,7 +81,7 @@ public class Player {
             return;
         }
         pos.setCol(pos.getCol() + 1);
-        //guy.load("resources/GodzillaRightDirection.png");
+        guy.load("resources/PlayerRight.png");
         guy.translate(40, 0);
     }
 
@@ -95,7 +95,7 @@ public class Player {
         }
 
         pos.setCol(pos.getCol() - 1);
-        //guy.load("resources/GodzillaRightDirection.png");
+        guy.load("resources/PlayerLeft.png");
         guy.translate(-40, 0);
     }
 
