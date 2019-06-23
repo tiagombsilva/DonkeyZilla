@@ -7,17 +7,28 @@ public class DonkeyZilla extends Picture {
 
     private Position pos;
     private Picture donkeyZilla;
-    public Rectangle hitbox;
 
     public DonkeyZilla(int col, int row) {
         pos = new Position(col,row);
         donkeyZilla = new Picture(pos.colToX(), pos.rowToY(), "resources/GodzillaLeftDirection.png");
-        hitbox = new Rectangle(pos.getCol(), pos.getRow(),80, 80);
+
     }
 
     public void setPos(int x, int y) {
         pos.setCol(x);
         pos.setRow(y);
+    }
+
+    public void move(){
+        int prob = (int) Math.floor(Math.random()*2);
+
+        if(prob == 0){
+            moveRight();
+        }
+
+        if(prob == 1){
+            moveLeft();
+        }
     }
 
 
@@ -33,15 +44,25 @@ public class DonkeyZilla extends Picture {
     }
 
     public void moveRight() {
-        pos.setCol(pos.getCol() + 5);
+        if(pos.getCol()>=29){
+            return;
+        }
+        pos.setCol(pos.getCol() + 1);
         donkeyZilla.load("resources/GodZillaRightDirection.png");
-        donkeyZilla.translate(5, 0);
+        donkeyZilla.translate(40, 0);
     }
 
     public void moveLeft() {
-        pos.setCol(pos.getCol() - 5);
+        if(pos.getCol() <= 6){
+            return;
+        }
+        pos.setCol(pos.getCol() - 1);
         donkeyZilla.load("resources/GodZillaLeftDirection.png");
-        donkeyZilla.translate(- 5,0);
+        donkeyZilla.translate(- 40,0);
+    }
+
+    public Rectangle bounds(){
+        return new Rectangle(pos.colToX(), pos.rowToY(), 80,40);
     }
 
 }

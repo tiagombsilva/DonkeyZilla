@@ -15,7 +15,6 @@ public class Projectile extends Picture {
     public Projectile(int col, int row) {
         pos = new Position(col, row);
         fireball = new Picture(pos.colToX(),pos.rowToY(), "resources/FireProjectile.png");
-        hitbox = new Rectangle(pos.getCol(), pos.getRow(),40, 80);
     }
 
     public boolean isMoving() {
@@ -46,17 +45,17 @@ public class Projectile extends Picture {
     public void fallingDown() {
         if(moving) {
             outOfBounds();
-            pos.setRow(pos.getRow() + 20);
-            fireball.translate(0, 20);
+            pos.setRow(pos.getRow() + 1);
+            fireball.translate(0, 40);
 
-            if (this.getPos().getRow() > 425) {
+            if (this.pos.rowToY() > 425) {
                 middleScreenPosition = true;
             }
         }
     }
 
     private void outOfBounds() {
-        if (this.getPos().getRow() > 850) {
+        if (this.pos.rowToY() > 850) {
             this.setPos((int)(Math.random() * 30), -1);
             this.resetFireball();
             this.middleScreenPosition = false;
@@ -78,4 +77,7 @@ public class Projectile extends Picture {
         fireball.draw();
     }
 
+    public Rectangle bounds(){
+        return new Rectangle(this.pos.colToX(),this.pos.rowToY(),40,40);
+    }
 }

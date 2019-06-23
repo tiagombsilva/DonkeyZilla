@@ -14,6 +14,7 @@ public class Player {
     private boolean isFalling = true;
     private boolean isJumping;
     private int jumpCounter;
+    private boolean isDead;
 
     public Player(int col, int row) {
         pos = new Position(col, row);
@@ -23,6 +24,12 @@ public class Player {
     public boolean isFalling() {
         return isFalling;
     }
+
+    public boolean isDead(){
+        return isDead;
+    }
+
+
 
     public void setFalling(boolean fly) {
         isFalling = fly;
@@ -54,7 +61,7 @@ public class Player {
     public void jump() {
 
         while(jumpCounter < 4) {
-            if (CollisionDetector.detect(this.topBounds())) {
+            if (CollisionDetector.detect(this.topBoundsPlatform())) {
                 setFalling(true);
                 jumpCounter = 0;
                 return;
@@ -77,7 +84,7 @@ public class Player {
         if (this.getPos().getCol() == 29) {
             return;
         }
-        if (CollisionDetector.detect(this.rightBounds())){
+        if (CollisionDetector.detect(this.rightBoundsPlatform())){
             return;
         }
         pos.setCol(pos.getCol() + 1);
@@ -90,7 +97,7 @@ public class Player {
             return;
         }
 
-        if (CollisionDetector.detect(this.leftBounds())){
+        if (CollisionDetector.detect(this.leftBoundsPlatform())){
             return;
         }
 
@@ -100,7 +107,7 @@ public class Player {
     }
 
     public void playerMove() {
-        if (CollisionDetector.detect(this.bottomBounds())) {
+        if (CollisionDetector.detect(this.bottomBoundsPlatform())) {
             setFalling(false);
             return;
         }else{
@@ -125,23 +132,32 @@ public class Player {
     }
 
     public void die() {
-        //GAME OVER
+        isDead = true;
+
     }
 
-    public Rectangle bottomBounds() {
+    public Rectangle bottomBoundsPlatform() {
         return new Rectangle(this.pos.colToX(), this.pos.rowToY() + 40, 40, 40);
     }
 
-    public Rectangle topBounds() {
+    public Rectangle topBoundsPlatform() {
         return new Rectangle(this.pos.colToX(), this.pos.rowToY() - 40, 40, 40);
     }
 
-    public Rectangle leftBounds() {
+    public Rectangle leftBoundsPlatform() {
         return new Rectangle(this.pos.colToX() - 40, this.pos.rowToY(), 40, 40);
     }
 
-    public Rectangle rightBounds() {
+    public Rectangle rightBoundsPlatform() {
         return new Rectangle(this.pos.colToX() + 40, this.pos.rowToY(), 40, 40);
     }
+
+    public Rectangle Bounds() {
+        return new Rectangle(this.pos.colToX(), this.pos.rowToY(), 40, 40);
+    }
+
+
+
+
 
 }

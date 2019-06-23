@@ -15,9 +15,9 @@ public class LevelFactory {
         MovementLogic movementLogic = new MovementLogic(player);
         Platform[][] platforms = new Platform[20][30];
         Picture background;
-        DonkeyZilla donkeyZilla;
         Projectile[] projectiles = new Projectile[10];
-        donkeyZilla = new DonkeyZilla(25, 5);
+        DonkeyZilla donkeyZilla = new DonkeyZilla(25, 6);
+        Princess princess = new Princess(2,2);
         background = new Picture(0, 0, "resources/Background.png");
         background.draw();
 
@@ -80,6 +80,7 @@ public class LevelFactory {
         projectiles[0].setMoving();
         ///////
 
+        princess.draw();
         donkeyZilla.draw();
         player.draw();
 
@@ -89,6 +90,7 @@ public class LevelFactory {
         gameObject[3] = projectiles;
         gameObject[4] = movementLogic;
         gameObject[5] = player;
+        gameObject[6] = princess;
         return gameObject;
 
     }

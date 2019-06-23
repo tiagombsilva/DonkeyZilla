@@ -13,6 +13,7 @@ public class Game {
     private static Picture background;
     private static Player player = null;
     private static DonkeyZilla enemy;
+    private static Princess princess;
     private static Projectile[] projectiles = null;
     private static CollisionDetector collisionDetector;
     private static MainMenu menu;
@@ -24,8 +25,23 @@ public class Game {
 
         while (levelCounter > 0 || gameOver) {
 
+            if (player.isDead()) {
+                gameOver = true;
+                return;
+            }
+            if(touchPrincess()){
+                gameOver = true;
+                return;
+            }
+            if(touchDonkeyzilla()){
+                gameOver = true;
+                return;
+            }
+
             shootprojectiles();
             player.playerMove();
+            enemy.move();
+            hitable();
 
             try {
                 Thread.sleep(70);
@@ -49,8 +65,44 @@ public class Game {
         }
     }
 
+    public static void hitable() {
+        for (int i = 0; i < projectiles.length - 1; i++) {
+            if (player.Bounds().intersects(projectiles[i].bounds())) {
+                player.die();
+                System.out.println("top");
+            }
+            if (player.Bounds().intersects(projectiles[i].bounds())) {
+                player.die();
+                System.out.println("left");
+            }
+            if (player.Bounds().intersects(projectiles[i].bounds())) {
+                player.die();
+                System.out.println("right");
+            }
+            if (player.Bounds().intersects(projectiles[i].bounds())) {
+                player.die();
+                System.out.println("bottom");
+            }
+        }
+    }
+
+    public static boolean touchPrincess() {
+        if (player.Bounds().intersects(princess.bounds())) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean touchDonkeyzilla() {
+        if (player.Bounds().intersects(enemy.bounds())) {
+            return true;
+        }
+        return false;
+    }
+
+
     public static void initGame(int lvl) {
-        if(levelCounter == 0){
+        if (levelCounter == 0) {
             menu = (MainMenu) LevelFactory.menu();
             menu.menuLoop();
         }
@@ -74,6 +126,9 @@ public class Game {
                 }
                 if (object instanceof Player) {
                     player = (Player) object;
+                }
+                if (object instanceof Princess) {
+                    princess = (Princess) object;
                 }
             }
         }
