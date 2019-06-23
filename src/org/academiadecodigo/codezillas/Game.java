@@ -56,41 +56,35 @@ public class Game {
                 }
 
                 try {
-                    Thread.sleep(70);
+                    Thread.sleep(200);
+                    player.playerFall();
+
+                    System.out.println(player.isTouching());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
 
+                for (int x = 0; x < platforms.length; x++) {
+                    for (int y = 0; y < platforms.length; y++) {
 
-                    for (int i = 0; i < 20; i++) {
-                        for (int y = 0; y < 30; y++) {
+                        if (platforms[x][y] != null && platforms[x][y].getPos() != null) {
+                            if ((player.hitbox.intersects(platforms[x][y].hitbox)) == false) {
 
-                            if(platforms[i][y] == null){
+                                System.out.println("true");
+                                player.setFalling(true);
 
-                            }else if (platforms[i][y].getPos() != null){
-
-                                System.out.println(player.getPos().getRow() + "  " + player.getPos().getCol() + " || " + platforms[i][y].getPos().getRow() + " " + platforms[i][y].getPos().getCol());
-
-                                if (player.getPos().getCol() == platforms[i][y].getPos().getCol() || player.getPos().getRow() == platforms[i][y].getPos().getRow()) {
-                                    player.setFalling(false);
-
-                                } else {
-
-                                    player.setFalling(true);
-                                    player.playerFall();
-
-                                }
+                            } else {
+                                player.setFalling(false);
+                                System.out.println("false");
                             }
                         }
-
                     }
+                }
 
-                player.playerFall();
 
             }
+
         }
-
-
     }
 }
