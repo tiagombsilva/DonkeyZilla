@@ -32,14 +32,9 @@ public class Game {
         while (levelCounter > 0 || gameOver) {
 
             if (player.isDead()) {
-                gameOver = true;
-                return;
+                gameOver();
             }
             if(touchPrincess()){
-                gameOver = true;
-                return;
-            }
-            if(touchDonkeyzilla()){
                 gameOver = true;
                 return;
             }
@@ -101,7 +96,7 @@ public class Game {
 
     public static boolean touchDonkeyzilla() {
         if (player.Bounds().intersects(enemy.bounds())) {
-            return true;
+            player.die();
         }
         return false;
     }
@@ -139,6 +134,32 @@ public class Game {
                 }
             }
         }
+    }
+
+    public static void gameOver(){
+        player.getGuy().delete();
+        princess.delete();
+        enemy.delete();
+        background.draw();
+
+        int count = 0;
+
+        while(count < 30) {
+            background.load("resources/GameOver.jpg");
+            try {
+                Thread.sleep(30);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            background.load("resources/GameOverLast.jpg");
+            count++;
+            System.out.println(count);
+        }
+        System.exit(0);
+    }
+
+    public static void win(){
+
     }
 
 }
