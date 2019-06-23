@@ -53,6 +53,8 @@ public class Game {
                     }
                 }
 
+                ///SOLUÇAO  : 1. Atualizar pos. da Hitbox!! ; 2. Hitbox mexer primeiro que o objeto,
+                // e se colidir, volta atras, e o objeto nao se mexe!!
                 //player.setFalling(true);
                 player.playerFall();
 
@@ -60,6 +62,7 @@ public class Game {
                     for (int y = 0; y < 30; y++) {
 
                         if (platforms[i][y] == null) {
+
                         } else if (player.hitbox.intersects(platforms[i][y].hitbox)) {
                             player.setFalling(false);
                         } /*else {
