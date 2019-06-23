@@ -46,8 +46,7 @@ public class Platform {
         //platform.translate(100,0);
         platform.delete();
         //Null pointer Expection
-        pos = null;
-        setSolid(false);
+
     }
 
     public void draw(){

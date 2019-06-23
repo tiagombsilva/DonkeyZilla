@@ -10,8 +10,8 @@ public class Player {
     private int lives;
     private Position pos;
     private Picture princess;
-    private boolean isFalling = true;
-    public Rectangle hitbox;
+    private boolean isFalling;
+    private Rectangle hitbox;
 
     public Player(int col, int row) {
         pos = new Position(col, row);

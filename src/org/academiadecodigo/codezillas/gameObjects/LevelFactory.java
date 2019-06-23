@@ -4,15 +4,13 @@ import org.academiadecodigo.codezillas.player.MovementLogic;
 import org.academiadecodigo.codezillas.player.Player;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-import java.util.LinkedList;
-
 public class LevelFactory {
 
     private static Object[] gameObject = new Object[10];
 
     public static Object[] level1() {
 
-        Player player = new Player(1, 3);
+        Player player = new Player(1, 2);
         MovementLogic movementLogic = new MovementLogic(player);
         Platform[][] platforms = new Platform[20][30];
         Picture background;
@@ -22,11 +20,10 @@ public class LevelFactory {
         background = new Picture(0, 0, "resources/Background.png");
         background.draw();
 
-       // LinkedList<Platform> platforms1 = new LinkedList<Platform>();
+        // LinkedList<Platform> platforms1 = new LinkedList<Platform>();
 
 
-
-        for (int i = 0; i < 20; i ++) {
+        for (int i = 0; i < 20; i++) {
             for (int y = 0; y < 30; y++) {
 
 /**
@@ -36,39 +33,39 @@ public class LevelFactory {
 
  }
  **/
-                if(i == 4 || i == 7 || i == 10 || i == 13 || i == 16 || i == 19){
+                if (i == 4 || i == 7 || i == 10 || i == 13 || i == 16 || i == 19) {
                     platforms[i][y] = new Platform(y, i);
                     platforms[i][y].draw();
                 }
 
                 if (i == 4 && (y == 15 || y == 16)) {
-                        platforms[i][y].delete();
-                        platforms[i][y].setSolid(false);
-                        continue;
+                    platforms[i][y].delete();
+                    platforms[i][y] = null;
+                    continue;
                 }
 
                 if (i == 7 && (y == 0 || y == 1)) {
-                        platforms[i][y].delete();
-                        platforms[i][y].setSolid(false);
-                        continue;
+                    platforms[i][y].delete();
+                    platforms[i][y] = null;
+                    continue;
                 }
 
-                if (i == 10 && (y == 18 || y ==19)){
-                        platforms[i][y].delete();
-                        platforms[i][y].setSolid(false);
-                        continue;
+                if (i == 10 && (y == 18 || y == 19)) {
+                    platforms[i][y].delete();
+                    platforms[i][y] = null;
+                    continue;
                 }
 
-                if (i == 13 && (y ==2 || y == 3)) {
-                        platforms[i][y].delete();
-                        platforms[i][y].setSolid(false);
-                        continue;
+                if (i == 13 && (y == 2 || y == 3)) {
+                    platforms[i][y].delete();
+                    platforms[i][y] = null;
+                    continue;
                 }
 
                 if (i == 16 && (y == 16 || y == 17)) {
-                        platforms[i][y].delete();
-                        platforms[i][y].setSolid(false);
-                        continue;
+                    platforms[i][y].delete();
+                    platforms[i][y] = null;
+                    continue;
                 }
             }
         }

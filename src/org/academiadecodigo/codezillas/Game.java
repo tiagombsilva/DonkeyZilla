@@ -57,7 +57,7 @@ public class Game {
 
                 try {
                     Thread.sleep(200);
-                    player.playerFall();
+
 
                     System.out.println(player.isTouching());
                 } catch (InterruptedException e) {
@@ -65,10 +65,23 @@ public class Game {
                 }
 
 
-                for (int x = 0; x < platforms.length; x++) {
-                    for (int y = 0; y < platforms.length; y++) {
+                    for (int x = 0; x < 20; x++) {
+                        for (int y = 0; y < 30; y++) {
 
-                        if (platforms[x][y] != null && platforms[x][y].getPos() != null) {
+
+                                    if ((player.getPos().getCol() ==15 || player.getPos().getCol() == 16)) {
+
+                                        player.setFalling(true);
+                                        System.out.println("true");
+                                    } else {
+                                        player.setFalling(false);
+                                        System.out.println("false");
+                                    }
+
+
+
+                        player.playerFall();
+                      /*  if (platforms[x][y] != null && platforms[x][y].getPos() != null) {
                             if ((player.hitbox.intersects(platforms[x][y].hitbox)) == false) {
 
                                 System.out.println("true");
@@ -78,7 +91,7 @@ public class Game {
                                 player.setFalling(false);
                                 System.out.println("false");
                             }
-                        }
+                        }*/
                     }
                 }
 
