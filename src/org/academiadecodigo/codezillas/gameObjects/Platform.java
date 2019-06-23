@@ -47,7 +47,7 @@ public class Platform {
     }
 
     public Rectangle bounds(){
-        return new Rectangle(this.pos.colToX(),this.pos.rowToY()-40,40,40);
+        return new Rectangle(this.pos.colToX(),this.pos.rowToY(),40,40);
     }
 
 }

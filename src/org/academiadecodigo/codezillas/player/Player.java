@@ -10,12 +10,14 @@ public class Player {
 
     private int lives;
     private Position pos;
-    private Picture princess;
+    private Picture guy;
     private boolean isFalling = true;
+    private boolean isJumping;
+    private int jumpCounter;
 
     public Player(int col, int row) {
         pos = new Position(col, row);
-        princess = new Picture(pos.colToX(), pos.rowToY(), "resources/Princess.png");
+        guy = new Picture(pos.colToX(), pos.rowToY(), "resources/FireProjectile.png");
     }
 
     public boolean isFalling() {
@@ -35,43 +37,83 @@ public class Player {
         pos.setRow(y);
     }
 
-    public Picture getPrincess() {
-        return princess;
+    public Picture getGuy() {
+        return guy;
     }
 
     public void draw() {
-        princess.draw();
+        guy.draw();
     }
 
     public void playerFall() {
-        if(CollisionDetector.detect(this.bounds())){
-            return;
-        }
         pos.setRow(pos.getRow() + 1);
-        princess.translate(0, 40);
+        guy.translate(0, 40);
     }
 
 
     public void jump() {
 
+        while(jumpCounter < 4) {
+            if (CollisionDetector.detect(this.topBounds())) {
+                setFalling(true);
+                jumpCounter = 0;
+                return;
+            }
+            if(pos.rowToY()-40 == 0){
+                return;
+            }
+            jumpCounter++;
+            pos.setRow(pos.getRow() - 1);
+            guy.translate(0, -40);
+
+        }
+        setFalling(true);
+        jumpCounter = 0;
+
     }
 
+
     public void moveRight() {
-        if(this.getPos().getCol() == 29 ){
+        if (this.getPos().getCol() == 29) {
+            return;
+        }
+        if (CollisionDetector.detect(this.rightBounds())){
             return;
         }
         pos.setCol(pos.getCol() + 1);
-        //princess.load("resources/GodzillaRightDirection.png");
-        princess.translate(40, 0);
+        //guy.load("resources/GodzillaRightDirection.png");
+        guy.translate(40, 0);
     }
 
     public void moveLeft() {
-        if(this.getPos().getCol() == 0){
+        if (this.getPos().getCol() == 0){
             return;
         }
+
+        if (CollisionDetector.detect(this.leftBounds())){
+            return;
+        }
+
         pos.setCol(pos.getCol() - 1);
-        //princess.load("resources/GodzillaRightDirection.png");
-        princess.translate(-40, 0);
+        //guy.load("resources/GodzillaRightDirection.png");
+        guy.translate(-40, 0);
+    }
+
+    public void playerMove() {
+        if (CollisionDetector.detect(this.bottomBounds())) {
+            setFalling(false);
+            return;
+        }else{
+            setFalling(true);
+        }
+
+        if (isFalling) {
+            this.playerFall();
+        }
+        if (isJumping) {
+            this.jump();
+        }
+
     }
 
     public void endLevel() {
@@ -86,7 +128,20 @@ public class Player {
         //GAME OVER
     }
 
-    public Rectangle bounds() {
-        return new Rectangle(this.pos.colToX(), this.pos.rowToY(), 40, 80);
+    public Rectangle bottomBounds() {
+        return new Rectangle(this.pos.colToX(), this.pos.rowToY() + 40, 40, 40);
     }
+
+    public Rectangle topBounds() {
+        return new Rectangle(this.pos.colToX(), this.pos.rowToY() - 40, 40, 40);
+    }
+
+    public Rectangle leftBounds() {
+        return new Rectangle(this.pos.colToX() - 40, this.pos.rowToY(), 40, 40);
+    }
+
+    public Rectangle rightBounds() {
+        return new Rectangle(this.pos.colToX() + 40, this.pos.rowToY(), 40, 40);
+    }
+
 }

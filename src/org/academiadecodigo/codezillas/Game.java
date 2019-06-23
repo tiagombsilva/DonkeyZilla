@@ -55,7 +55,7 @@ public class Game {
                     }
                 }
 
-                player.playerFall();
+                player.playerMove();
 
 
                 try {

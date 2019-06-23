@@ -48,8 +48,8 @@ public class CollisionDetector {
             for (int x = 0; x < 30; x++) {
                 if (platforms[y][x] == null) {
                     continue;
-                } else{
-                    if(playerBounds.intersects(platforms[y][x].bounds())){
+                } else {
+                    if (playerBounds.intersects(platforms[y][x].bounds())) {
                         return true;
                     }
                 }
