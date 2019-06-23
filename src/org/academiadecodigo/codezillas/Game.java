@@ -32,10 +32,13 @@ public class Game {
         while (levelCounter > 0 || gameOver) {
 
             if (player.isDead()) {
+                gameOver = true;
                 gameOver();
+                return;
             }
             if(touchPrincess()){
                 gameOver = true;
+                win();
                 return;
             }
 
@@ -144,7 +147,7 @@ public class Game {
 
         int count = 0;
 
-        while(count < 30) {
+        while(count < 20) {
             background.load("resources/GameOver.jpg");
             try {
                 Thread.sleep(30);
@@ -159,7 +162,44 @@ public class Game {
     }
 
     public static void win(){
+        player.getGuy().delete();
+        princess.delete();
+        enemy.delete();
+        background.draw();
 
+        int count = 0;
+
+        background.load("resources/Win.jpg");
+        try {
+            Thread.sleep(900);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        background.load("resources/FirstWin.jpg");
+        try {
+            Thread.sleep(900);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        background.load("resources/LastWin.jpg");
+        try {
+            Thread.sleep(900);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        while(count < 20) {
+            background.load("resources/LastCredits.jpg");
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            background.load("resources/Credits.jpg");
+            count++;
+            System.out.println(count);
+        }
+        System.exit(0);
     }
 
 }
