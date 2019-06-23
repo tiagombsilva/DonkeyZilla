@@ -4,13 +4,15 @@ import org.academiadecodigo.codezillas.player.MovementLogic;
 import org.academiadecodigo.codezillas.player.Player;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.util.LinkedList;
+
 public class LevelFactory {
 
     private static Object[] gameObject = new Object[10];
 
     public static Object[] level1() {
 
-        Player player = new Player(1, 2);
+        Player player = new Player(1, 3);
         MovementLogic movementLogic = new MovementLogic(player);
         Platform[][] platforms = new Platform[20][30];
         Picture background;
@@ -19,6 +21,9 @@ public class LevelFactory {
         donkeyZilla = new DonkeyZilla(10, 6);
         background = new Picture(0, 0, "resources/Background.png");
         background.draw();
+
+       // LinkedList<Platform> platforms1 = new LinkedList<Platform>();
+
 
 
         for (int i = 0; i < 20; i ++) {
