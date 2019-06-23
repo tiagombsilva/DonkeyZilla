@@ -1,5 +1,6 @@
 package org.academiadecodigo.codezillas.gameObjects;
 
+import org.academiadecodigo.codezillas.mainMenu.MainMenu;
 import org.academiadecodigo.codezillas.player.MovementLogic;
 import org.academiadecodigo.codezillas.player.Player;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -10,7 +11,7 @@ public class LevelFactory {
 
     public static Object[] level1() {
 
-        Player player = new Player(1, 1);
+        Player player = new Player(1, 18);
         MovementLogic movementLogic = new MovementLogic(player);
         Platform[][] platforms = new Platform[20][30];
         Picture background;
@@ -20,7 +21,6 @@ public class LevelFactory {
         background = new Picture(0, 0, "resources/Background.png");
         background.draw();
 
-        // LinkedList<Platform> platforms1 = new LinkedList<Platform>();
 
 
         for (int i = 0; i < 20; i++) {
@@ -91,6 +91,10 @@ public class LevelFactory {
         gameObject[5] = player;
         return gameObject;
 
+    }
+
+    public static Object menu(){
+        return new MainMenu();
     }
 
 }
