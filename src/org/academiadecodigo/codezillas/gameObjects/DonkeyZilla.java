@@ -1,14 +1,18 @@
 package org.academiadecodigo.codezillas.gameObjects;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.awt.*;
+
 public class DonkeyZilla extends Picture {
 
     private Position pos;
     private Picture donkeyZilla;
+    public Rectangle hitbox;
 
     public DonkeyZilla(int col, int row) {
         pos = new Position(col,row);
         donkeyZilla = new Picture(pos.colToX(), pos.rowToY(), "resources/GodzillaLeftDirection.png");
+        hitbox = new Rectangle(pos.getCol(), pos.getRow(),80, 80);
     }
 
     public void setPos(int x, int y) {

@@ -1,5 +1,6 @@
 package org.academiadecodigo.codezillas.player;
 
+import org.academiadecodigo.codezillas.gameObjects.CollisionDetector;
 import org.academiadecodigo.codezillas.gameObjects.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -10,12 +11,10 @@ public class Player {
     private int lives;
     private Position pos;
     private Picture princess;
-    private boolean isFalling;
-    private Rectangle hitbox;
+    private boolean isFalling = true;
 
     public Player(int col, int row) {
         pos = new Position(col, row);
-        hitbox = new Rectangle(col,row,col+40,row+40);
         princess = new Picture(pos.colToX(), pos.rowToY(), "resources/Princess.png");
     }
 
@@ -45,13 +44,11 @@ public class Player {
     }
 
     public void playerFall() {
-        hitbox.x = princess.getX();
-        hitbox.y = princess.getY();
-
-        if (isFalling) {
-            pos.setRow(pos.getRow() + 1);
-            princess.translate(0, 40);
+        if(CollisionDetector.detect(this.bounds())){
+            return;
         }
+        pos.setRow(pos.getRow() + 1);
+        princess.translate(0, 40);
     }
 
 
@@ -83,21 +80,7 @@ public class Player {
         //GAME OVER
     }
 
-    public boolean isTouching() {
-
-        System.out.println("X" + getPos().getCol() + " Y" + getPos().getRow());
-
-        if(getPos().getCol() < 14 || getPos().getCol() > 17){
-            if(getPos().getRow() > 2){
-                return true;
-            }
-        }
-
-        if(getPos().getCol() > 0 ){
-            if(getPos().getRow() > 4){
-                return true;
-            }
-        }
-        return false;
+    public Rectangle bounds() {
+        return new Rectangle(this.pos.colToX(), this.pos.rowToY(), 40, 80);
     }
 }

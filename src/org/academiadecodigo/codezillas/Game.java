@@ -55,49 +55,23 @@ public class Game {
                     }
                 }
 
+                player.playerFall();
+
+
                 try {
-                    Thread.sleep(200);
-
-
-                    System.out.println(player.isTouching());
+                    Thread.sleep(70);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-
-                    for (int x = 0; x < 20; x++) {
-                        for (int y = 0; y < 30; y++) {
-
-
-                                    if ((player.getPos().getCol() ==15 || player.getPos().getCol() == 16)) {
-
-                                        player.setFalling(true);
-                                        System.out.println("true");
-                                    } else {
-                                        player.setFalling(false);
-                                        System.out.println("false");
-                                    }
-
-
-
-                        player.playerFall();
-                      /*  if (platforms[x][y] != null && platforms[x][y].getPos() != null) {
-                            if ((player.hitbox.intersects(platforms[x][y].hitbox)) == false) {
-
-                                System.out.println("true");
-                                player.setFalling(true);
-
-                            } else {
-                                player.setFalling(false);
-                                System.out.println("false");
-                            }
-                        }*/
-                    }
-                }
-
-
             }
-
         }
+
     }
+    ///SOLUÇAO  : 1. Atualizar pos. da Hitbox!! ; 2. Hitbox mexer primeiro que o objeto,
+    // e se colidir, volta atras, e o objeto nao se mexe!!
+    //player.setFalling(true);
 }
+
+
+
+

@@ -9,12 +9,10 @@ public class Platform {
     private Position pos;
     private Picture platform;
     private boolean solid = true;
-    public Rectangle hitbox;
 
     public Platform(int col, int row){
         pos = new Position(col,row);
         platform = new Picture(pos.colToX(),pos.rowToY(),"resources/PlatformMiddleRow.png");
-        hitbox = new Rectangle(col, row, 40, 40);
     }
 
     public Position getPos(){
@@ -23,13 +21,12 @@ public class Platform {
     }
 
     public boolean isSolid(){
-        return solid;
+        return this.solid;
     }
 
     public void setSolid(boolean solid) {
         this.solid = solid;
     }
-
 
     public void setPos(int x, int y){
         pos.setCol(x);
@@ -41,15 +38,16 @@ public class Platform {
     }
 
     public void delete(){
-
-        //setPos(100,0);
-        //platform.translate(100,0);
         platform.delete();
         //Null pointer Expection
-
     }
 
     public void draw(){
         platform.draw();
     }
+
+    public Rectangle bounds(){
+        return new Rectangle(this.pos.colToX(),this.pos.rowToY(),40,40);
+    }
+
 }
