@@ -57,12 +57,18 @@ public class Player {
     }
 
     public void moveRight() {
+        if(this.getPos().getCol() == 29 ){
+            return;
+        }
         pos.setCol(pos.getCol() + 1);
         //princess.load("resources/GodzillaRightDirection.png");
         princess.translate(40, 0);
     }
 
     public void moveLeft() {
+        if(this.getPos().getCol() == 0){
+            return;
+        }
         pos.setCol(pos.getCol() - 1);
         //princess.load("resources/GodzillaRightDirection.png");
         princess.translate(-40, 0);
