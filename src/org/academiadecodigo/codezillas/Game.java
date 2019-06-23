@@ -22,7 +22,6 @@ public class Game {
     private static GameMusic gameMusic = new GameMusic();
     private static MenuMusic menuMusic = new MenuMusic();
     private static GameOverMusic gameOverMusic = new GameOverMusic();
-    private static WinMusic winMusic = new WinMusic();
     private static CreditsMusic creditsMusic = new CreditsMusic();
 
     public static void main(String[] args) {
@@ -32,11 +31,21 @@ public class Game {
         while (levelCounter > 0 || gameOver) {
 
             if (player.isDead()) {
+                gameMusic.stopMusic();
                 gameOver = true;
                 gameOver();
                 return;
             }
+
+            if(touchDonkeyzilla()){
+                gameMusic.stopMusic();
+                gameOver = true;
+                gameOver();
+                return;
+            }
+
             if(touchPrincess()){
+                gameMusic.stopMusic();
                 gameOver = true;
                 win();
                 return;
@@ -99,7 +108,7 @@ public class Game {
 
     public static boolean touchDonkeyzilla() {
         if (player.Bounds().intersects(enemy.bounds())) {
-            player.die();
+            return true;
         }
         return false;
     }
@@ -110,6 +119,8 @@ public class Game {
             menu = (MainMenu) LevelFactory.menu();
             menuMusic.startMenuMusic();
             menu.menuLoop();
+            menuMusic.stopMusic();
+            gameMusic.startGameMusic();
         }
 
         if (levelCounter == 1) {
@@ -140,6 +151,7 @@ public class Game {
     }
 
     public static void gameOver(){
+        gameOverMusic.startGameOverMusic();
         player.getGuy().delete();
         princess.delete();
         enemy.delete();
@@ -162,6 +174,7 @@ public class Game {
     }
 
     public static void win(){
+        creditsMusic.startCreditsMusic();
         player.getGuy().delete();
         princess.delete();
         enemy.delete();

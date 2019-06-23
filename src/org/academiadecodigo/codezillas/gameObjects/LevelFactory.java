@@ -22,9 +22,6 @@ public class LevelFactory {
         background = new Picture(0, 0, "resources/Background.png");
         background.draw();
 
-
-
-
         for (int i = 0; i < 20; i++) {
             for (int y = 0; y < 30; y++) {
 

@@ -12,6 +12,7 @@ import java.net.URL;
 
 public class GameMusic {
     private boolean playing;
+    private Clip clip;
 
     public boolean isPlaying() {
         return playing;
@@ -21,6 +22,9 @@ public class GameMusic {
         this.playing = playing;
     }
 
+    public void stopMusic(){
+        clip.stop();
+    }
     public void startGameMusic() {
         setPlaying(true);
         String pathStr = "resources/Nirvana8bit.wav";
@@ -39,7 +43,7 @@ public class GameMusic {
             e.printStackTrace();
         }
         try {
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
             clip.loop(clip.LOOP_CONTINUOUSLY);

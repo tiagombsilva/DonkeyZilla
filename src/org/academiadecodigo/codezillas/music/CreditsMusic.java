@@ -12,9 +12,14 @@ import java.net.URL;
 
 public class CreditsMusic {
     private boolean playing;
+    private Clip clip;
 
     public boolean isPlaying() {
         return playing;
+    }
+
+    public void stopMusic(){
+        clip.stop();
     }
 
     public void setPlaying(boolean playing) {
@@ -39,7 +44,7 @@ public class CreditsMusic {
             e.printStackTrace();
         }
         try {
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
             clip.loop(clip.LOOP_CONTINUOUSLY);
