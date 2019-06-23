@@ -12,7 +12,7 @@ public class Platform {
 
     public Platform(int col, int row){
         pos = new Position(col,row);
-        platform = new Picture(pos.colToX(),pos.rowToY(),"resources/PlatformMiddleRow.png");
+        platform = new Picture(pos.colToX(),pos.rowToY(),"resources/Platform.PNG");
     }
 
     public Position getPos(){

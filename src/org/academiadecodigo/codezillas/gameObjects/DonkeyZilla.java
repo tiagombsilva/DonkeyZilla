@@ -53,7 +53,7 @@ public class DonkeyZilla extends Picture {
     }
 
     public void moveLeft() {
-        if(pos.getCol() <= 6){
+        if(pos.getCol() <= 10){
             return;
         }
         pos.setCol(pos.getCol() - 1);
