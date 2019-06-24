@@ -168,6 +168,7 @@ public class Game {
         gameOverMusic.stopMusic();
         gameOver = false;
         levelCounter= -1;
+        background.delete();
     }
 
     public static void win(){
