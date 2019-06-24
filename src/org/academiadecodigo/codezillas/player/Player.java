@@ -155,9 +155,4 @@ public class Player {
     public Rectangle Bounds() {
         return new Rectangle(this.pos.colToX(), this.pos.rowToY(), 40, 40);
     }
-
-
-
-
-
 }

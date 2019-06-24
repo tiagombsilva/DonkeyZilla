@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class CollisionDetector {
 
-    static Platform[][] platforms = null;
+    static Platform[][] platforms;
     static Picture background;
     static Player player;
     static DonkeyZilla enemy;

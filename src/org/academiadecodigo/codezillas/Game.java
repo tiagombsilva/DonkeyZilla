@@ -51,7 +51,7 @@ public class Game {
                 return;
             }
 
-            shootprojectiles();
+            shootProjectiles();
             player.playerMove();
             enemy.move();
             hitable();
@@ -68,7 +68,7 @@ public class Game {
     }
 
 
-    public static void shootprojectiles() {
+    public static void shootProjectiles() {
         int rng = (int) (Math.random() * projectiles.length + 1);
         for (int i = 0; i < projectiles.length - 1; i++) {
             projectiles[i].fallingDown();
@@ -82,19 +82,15 @@ public class Game {
         for (int i = 0; i < projectiles.length - 1; i++) {
             if (player.Bounds().intersects(projectiles[i].bounds())) {
                 player.die();
-                System.out.println("top");
             }
             if (player.Bounds().intersects(projectiles[i].bounds())) {
                 player.die();
-                System.out.println("left");
             }
             if (player.Bounds().intersects(projectiles[i].bounds())) {
                 player.die();
-                System.out.println("right");
             }
             if (player.Bounds().intersects(projectiles[i].bounds())) {
                 player.die();
-                System.out.println("bottom");
             }
         }
     }
@@ -168,7 +164,6 @@ public class Game {
             }
             background.load("resources/GameOverLast.jpg");
             count++;
-            System.out.println(count);
         }
         System.exit(0);
     }
@@ -204,13 +199,12 @@ public class Game {
         while(count < 20) {
             background.load("resources/LastCredits.jpg");
             try {
-                Thread.sleep(100);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             background.load("resources/Credits.jpg");
             count++;
-            System.out.println(count);
         }
         System.exit(0);
     }
