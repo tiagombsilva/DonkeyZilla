@@ -88,7 +88,7 @@ public class Player {
             return;
         }
         pos.setCol(pos.getCol() + 1);
-        guy.load("resources/PlayerRight.png");
+        guy.load("/resources/PlayerRight.png");
         guy.translate(40, 0);
     }
 
@@ -102,7 +102,7 @@ public class Player {
         }
 
         pos.setCol(pos.getCol() - 1);
-        guy.load("resources/PlayerLeft.png");
+        guy.load("/resources/PlayerLeft.png");
         guy.translate(-40, 0);
     }
 

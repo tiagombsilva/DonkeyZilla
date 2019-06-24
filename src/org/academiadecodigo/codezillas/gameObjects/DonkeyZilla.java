@@ -10,7 +10,7 @@ public class DonkeyZilla extends Picture {
 
     public DonkeyZilla(int col, int row) {
         pos = new Position(col,row);
-        donkeyZilla = new Picture(pos.colToX(), pos.rowToY(), "resources/GodzillaLeftDirection.png");
+        donkeyZilla = new Picture(pos.colToX(), pos.rowToY(), "resources/GodzillaL.png");
 
     }
 
@@ -48,7 +48,7 @@ public class DonkeyZilla extends Picture {
             return;
         }
         pos.setCol(pos.getCol() + 1);
-        donkeyZilla.load("resources/GodZillaRightDirection.png");
+        donkeyZilla.load("resources/GodzillaR.png");
         donkeyZilla.translate(40, 0);
     }
 
@@ -57,7 +57,7 @@ public class DonkeyZilla extends Picture {
             return;
         }
         pos.setCol(pos.getCol() - 1);
-        donkeyZilla.load("resources/GodZillaLeftDirection.png");
+        donkeyZilla.load("resources/GodzillaL.png");
         donkeyZilla.translate(- 40,0);
     }
 

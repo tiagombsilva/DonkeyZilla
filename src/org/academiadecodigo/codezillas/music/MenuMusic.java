@@ -29,7 +29,7 @@ public class MenuMusic {
     public void startMenuMusic() {
 
 
-            String pathStr = "resources/intromusic.wav";
+            String pathStr = "/resources/intromusic.wav";
             URL soundURL;
             AudioInputStream audioInputStream = null;
             try {

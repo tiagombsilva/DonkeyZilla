@@ -28,7 +28,7 @@ public class GameOverMusic {
 
     public void startGameOverMusic() {
         setPlaying(true);
-        String pathStr = "resources/gameovermusic.wav";
+        String pathStr = "/resources/gameovermusic.wav";
         URL soundURL;
         AudioInputStream audioInputStream = null;
         try {

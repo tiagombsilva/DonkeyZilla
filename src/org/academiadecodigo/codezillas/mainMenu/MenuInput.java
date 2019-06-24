@@ -12,11 +12,15 @@ public class MenuInput {
         Keyboard keyboard = new Keyboard(menuLogic);
 
         KeyboardEvent space = new KeyboardEvent();
+        KeyboardEvent leave = new KeyboardEvent();
 
         space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        leave.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
         space.setKey(KeyboardEvent.KEY_SPACE);
+        leave.setKey(KeyboardEvent.KEY_L);
 
         keyboard.addEventListener(space);
+        keyboard.addEventListener(leave);
     }
 }

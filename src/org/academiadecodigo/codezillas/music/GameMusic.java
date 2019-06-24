@@ -27,7 +27,7 @@ public class GameMusic {
     }
     public void startGameMusic() {
         setPlaying(true);
-        String pathStr = "resources/Nirvana8bit.wav";
+        String pathStr = "/resources/Nirvana8bit.wav";
         URL soundURL;
         AudioInputStream audioInputStream = null;
         try {

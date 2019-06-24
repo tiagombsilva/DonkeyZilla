@@ -1,16 +1,16 @@
 <?xml version="1.0" ?>
 
-<project name="MyProject" default="jarfile">
+<project name="DonkeyZilla" default="jarfile">
 
     <!-- Initialize build properties  -->
     <target name="init" description="Initializes properties">
         <property name="project.name" value="DonkeyZilla" />
         <property name="src.dir" value="src" />
-        <property name="Game.class" value="org.academiadecodigo.codezillas.Game" />
+        <property name="main.class" value="org.academiadecodigo.codezillas.Game"/>
         <property name="build.dir" value="build" />
         <property name="classes.dir" value="${build.dir}/classes" />
         <property name="lib.dir" value="lib" />
-        <property name="resources.dir" value="resources/"/>
+        <property name="resources.dir" value="resources"/>
         <path id="classpath">
             <fileset dir="${lib.dir}" includes="**/*.jar" />
         </path>
@@ -23,7 +23,7 @@
 
     <!-- Compiles the source code -->
     <target name="compile" description="Compiles the source code" depends="prepare">
-        <javac srcdir="${src.dir}" destdir="${classes.dir}">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
             <classpath refid="classpath"/>
         </javac>
     </target>
@@ -32,12 +32,12 @@
     <target name="jarfile" description="Archives the code" depends="compile">
         <jar destfile="${build.dir}/${project.name}.jar" basedir="${classes.dir}">
             <manifest>
-                <attribute name="Main-Class" value="${Game.class}" />
+                <attribute name="Main-Class" value="${main.class}" />
                 <attribute name="Class-Path" value="${lib.dir} ${resources.dir}" />
             </manifest>
             <zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
             <fileset dir=".">
-                <include name="**/${resources.dir}/**"/>
+                <include name="${resources.dir}/**"/>
             </fileset>
         </jar>
     </target>

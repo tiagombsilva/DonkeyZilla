@@ -19,6 +19,9 @@ public class MenuLogic implements KeyboardHandler {
         if(keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE){
             menu.setMenu(false);
         }
+        if(keyboardEvent.getKey() == KeyboardEvent.KEY_L){
+            System.exit(0);
+        }
     }
 
     @Override

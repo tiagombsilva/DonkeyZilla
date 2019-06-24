@@ -28,26 +28,25 @@ public class CreditsMusic {
 
     public void startCreditsMusic() {
         setPlaying(true);
-        String pathStr = "resources/creditsmusic.wav";
+        String pathStr = "/resources/creditsmusic.wav";
         URL soundURL;
         AudioInputStream audioInputStream = null;
+
         try {
             soundURL = Game.class.getResource(pathStr);
-            if (soundURL == null) {
-                File file = new File(pathStr);
-                soundURL = file.toURI().toURL();
-            }
+
             audioInputStream = AudioSystem.getAudioInputStream(soundURL);
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         try {
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
-            clip.loop(clip.LOOP_CONTINUOUSLY);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         } catch (IOException e) {

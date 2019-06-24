@@ -34,14 +34,14 @@ public class Game {
                 gameMusic.stopMusic();
                 gameOver = true;
                 gameOver();
-                return;
+                break;
             }
 
             if(touchDonkeyzilla()){
                 gameMusic.stopMusic();
                 gameOver = true;
                 gameOver();
-                return;
+                break;
             }
 
             if(touchPrincess()){
@@ -155,7 +155,7 @@ public class Game {
 
         int count = 0;
 
-        while(count < 20) {
+        while(count < 10) {
             background.load("resources/GameOver.jpg");
             try {
                 Thread.sleep(30);
@@ -165,7 +165,9 @@ public class Game {
             background.load("resources/GameOverLast.jpg");
             count++;
         }
-        System.exit(0);
+        gameOverMusic.stopMusic();
+        gameOver = false;
+        levelCounter= -1;
     }
 
     public static void win(){
@@ -196,10 +198,10 @@ public class Game {
             e.printStackTrace();
         }
 
-        while(count < 20) {
+        while(count < 10) {
             background.load("resources/LastCredits.jpg");
             try {
-                Thread.sleep(500);
+                Thread.sleep(800);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
