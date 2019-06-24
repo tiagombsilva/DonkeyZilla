@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 
-<project name="MyProject" default="jarfile">
+<project name="donkeyZilla" default="jarfile">
 
     <!-- Initialize build properties  -->
     <target name="init" description="Initializes properties">
@@ -10,7 +10,7 @@
         <property name="build.dir" value="build" />
         <property name="classes.dir" value="${build.dir}/classes" />
         <property name="lib.dir" value="lib" />
-        <property name="resources.dir" value="resources/"/>
+        <property name="resources.dir" value="resources"/>
         <path id="classpath">
             <fileset dir="${lib.dir}" includes="**/*.jar" />
         </path>
@@ -23,7 +23,7 @@
 
     <!-- Compiles the source code -->
     <target name="compile" description="Compiles the source code" depends="prepare">
-        <javac srcdir="${src.dir}" destdir="${classes.dir}">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
             <classpath refid="classpath"/>
         </javac>
     </target>
