@@ -2,7 +2,6 @@
 First group project after 4 weeks of learning Java.
 Group project at @ <Academia de Código>
 
-@ Tiago Silva https://github.com/tiagombsilva
 @ Miguel Machado https://github.com/machadomiguel
 @ Ana Oliveira https://github.com/AnaOliveiira
 @ João Tavares https://github.com/jc992
