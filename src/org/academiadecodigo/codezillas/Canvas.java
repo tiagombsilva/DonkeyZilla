@@ -8,7 +8,7 @@ public class Canvas {
 
     public static Rectangle CANVAS = null;
 
-    public Canvas(){
+    Canvas(){
         CANVAS = new Rectangle(0,0,(CELL_SIZE)*30,(CELL_SIZE)*20);
     }
 

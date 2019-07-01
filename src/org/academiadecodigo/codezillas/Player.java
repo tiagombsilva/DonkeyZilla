@@ -68,7 +68,6 @@ public class Player {
 
 
     private void moveRight() {
-        //TODO: THE NUMBERS, MASON! WHAT DO THEY MEAN!?
         if (this.getPos().getCol() == 29) {
             return;
         }

@@ -6,13 +6,13 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class MainMenu {
+class MainMenu {
 
     private boolean menu = true;
     private Picture background = new Picture(0,0, AssetPaths.MENU_0);
     private MenuInput menuInput = new MenuInput(new MenuLogic(this));
 
-    public void menuLoop(){
+    void menuLoop(){
         background.draw();
         while(menu){
             background.load(AssetPaths.MENU_1);
@@ -28,12 +28,12 @@ public class MainMenu {
         background.delete();
     }
 
-    public void setMenu(boolean menu) {
+    private void setMenu(boolean menu) {
         this.menu = menu;
     }
 
     private class MenuInput{
-        public MenuInput(KeyboardHandler menuLogic){
+        MenuInput(KeyboardHandler menuLogic){
 
             Keyboard keyboard = new Keyboard(menuLogic);
 
@@ -54,7 +54,7 @@ public class MainMenu {
     private class MenuLogic implements KeyboardHandler {
 
         private MainMenu menu;
-        public MenuLogic(MainMenu menu){
+        MenuLogic(MainMenu menu){
             this.menu = menu;
         }
 
