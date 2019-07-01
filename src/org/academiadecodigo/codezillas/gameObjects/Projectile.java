@@ -66,6 +66,6 @@ public class Projectile {
     }
 
     Rectangle bounds(){
-        return new Rectangle(this.pos.colToX(),this.pos.rowToY(), Canvas.CELL_SIZE, Canvas.CELL_SIZE);
+        return new Rectangle(this.pos.colToX(),this.pos.rowToY(),Canvas.CELL_SIZE,Canvas.CELL_SIZE);
     }
 }
