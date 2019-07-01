@@ -1,7 +1,5 @@
 package org.academiadecodigo.codezillas.gameObjects;
 
-import org.academiadecodigo.codezillas.AssetPaths;
-import org.academiadecodigo.codezillas.Canvas;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.awt.*;
@@ -10,17 +8,46 @@ public class Platform {
 
     private Position pos;
     private Picture platform;
+    private boolean solid = true;
 
     public Platform(int col, int row){
         pos = new Position(col,row);
-        platform = new Picture(pos.colToX(),pos.rowToY(), AssetPaths.STAGE_PLATFORM);
+        platform = new Picture(pos.colToX(),pos.rowToY(),"resources/Platform.png");
+    }
+
+    public Position getPos(){
+        return pos;
+
+    }
+
+    public boolean isSolid(){
+        return this.solid;
+    }
+
+    public void setSolid(boolean solid) {
+        this.solid = solid;
+    }
+
+    public void setPos(int x, int y){
+        pos.setCol(x);
+        pos.setRow(y);
+    }
+
+    public Picture getPlatform() {
+        return platform;
+    }
+
+    public void delete(){
+        platform.delete();
+        //Null pointer Expection
     }
 
     public void draw(){
         platform.draw();
     }
 
-    Rectangle bounds(){
-        return new Rectangle(this.pos.colToX(),this.pos.rowToY(), Canvas.CELL_SIZE, Canvas.CELL_SIZE);
+    public Rectangle bounds(){
+        return new Rectangle(this.pos.colToX(),this.pos.rowToY(),40,40);
     }
+
 }
