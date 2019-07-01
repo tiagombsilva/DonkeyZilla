@@ -21,11 +21,11 @@ public class Position {
     }
 
     public int colToX(){
-        return this.col * Canvas.CELLSIZE;
+        return this.col * Canvas.CELL_SIZE;
     }
 
     public int rowToY(){
-        return this.row * Canvas.CELLSIZE;
+        return this.row * Canvas.CELL_SIZE;
     }
 
     public void setCol(int col){

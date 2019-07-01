@@ -1,60 +1,55 @@
 package org.academiadecodigo.codezillas;
 
 import org.academiadecodigo.codezillas.gameObjects.*;
-import org.academiadecodigo.codezillas.mainMenu.MainMenu;
-import org.academiadecodigo.codezillas.music.*;
-import org.academiadecodigo.codezillas.player.Player;
+import org.academiadecodigo.codezillas.gameObjects.factory.PlatformFactory;
+import org.academiadecodigo.codezillas.gameObjects.factory.ProjectileFactory;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
-    private static int levelCounter = 0;
-
-    private static Platform[][] platforms = null;
-    private static Picture background;
-    private static Player player = null;
-    private static DonkeyZilla enemy;
-    private static Princess princess;
-    private static Projectile[] projectiles = null;
-    private static CollisionDetector collisionDetector;
-    private static MainMenu menu;
-    private static boolean gameOver = false;
-    private static GameMusic gameMusic = new GameMusic();
-    private static MenuMusic menuMusic = new MenuMusic();
-    private static GameOverMusic gameOverMusic = new GameOverMusic();
-    private static CreditsMusic creditsMusic = new CreditsMusic();
+    private int levelCounter = 0;
+    private Picture background;
+    private Player player;
+    private DonkeyZilla enemy;
+    private Princess princess;
+    private Projectile[] projectiles;
+    private Platform[][] platforms;
+    private boolean gameOver;
+    private GameMusic GameMusic = new GameMusic();
 
     public static void main(String[] args) {
+        Game game = new Game();
+        Canvas canvas = new Canvas();
+        game.start();
+    }
 
-        initGame(levelCounter);
+    private void start() {
+        setupLevel();
 
         while (levelCounter > 0 || gameOver) {
-
             if (player.isDead()) {
-                gameMusic.stopMusic();
-                gameOver = true;
-                gameOver();
-                return;
+                endGame();
+                break;
             }
 
-            if(touchDonkeyzilla()){
-                gameMusic.stopMusic();
+            if (CollisionDetector.intersectsEnemy()) {
+                GameMusic.stopMusic();
                 gameOver = true;
-                gameOver();
-                return;
+                endGame();
+                break;
             }
 
-            if(touchPrincess()){
-                gameMusic.stopMusic();
+            if (CollisionDetector.intersectsPrincess()) {
+                GameMusic.stopMusic();
                 gameOver = true;
                 win();
                 return;
             }
 
-            shootprojectiles();
+            shootProjectiles();
             player.playerMove();
             enemy.move();
-            hitable();
+            CollisionDetector.intersectsProjectile();
 
             try {
                 Thread.sleep(70);
@@ -64,155 +59,171 @@ public class Game {
         }
 
         levelCounter++;
-        main(args);
+        start();
+    }
+
+    private void setupLevel() {
+        switch (levelCounter) {
+            case 0:
+                setupMenu();
+                break;
+            case 1:
+                setupStage();
+                setupCollisionDetector();
+                renderStage();
+                break;
+            default:
+                throw new UnsupportedOperationException("Invalid levelCounter value");
+        }
     }
 
 
-    public static void shootprojectiles() {
-        int rng = (int) (Math.random() * projectiles.length + 1);
+    private void shootProjectiles() {
         for (int i = 0; i < projectiles.length - 1; i++) {
             projectiles[i].fallingDown();
-            if (projectiles[i].isMoving() && projectiles[i].isMiddleScreenPosition()) {
+            if (projectiles[i].isMoving() && projectiles[i].isMiddleScreen()) {
                 projectiles[i + 1].setMoving();
             }
         }
     }
 
-    public static void hitable() {
-        for (int i = 0; i < projectiles.length - 1; i++) {
-            if (player.Bounds().intersects(projectiles[i].bounds())) {
-                player.die();
-                System.out.println("top");
-            }
-            if (player.Bounds().intersects(projectiles[i].bounds())) {
-                player.die();
-                System.out.println("left");
-            }
-            if (player.Bounds().intersects(projectiles[i].bounds())) {
-                player.die();
-                System.out.println("right");
-            }
-            if (player.Bounds().intersects(projectiles[i].bounds())) {
-                player.die();
-                System.out.println("bottom");
-            }
-        }
+
+    private void setupCollisionDetector() {
+        CollisionDetector.setPlatforms(platforms);
+        CollisionDetector.setPlayer(player);
+        CollisionDetector.setProjectiles(projectiles);
+        CollisionDetector.setEnemy(enemy);
+        CollisionDetector.setPrincess(princess);
     }
 
-    public static boolean touchPrincess() {
-        if (player.Bounds().intersects(princess.bounds())) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean touchDonkeyzilla() {
-        if (player.Bounds().intersects(enemy.bounds())) {
-            return true;
-        }
-        return false;
-    }
-
-
-    public static void initGame(int lvl) {
-        if (levelCounter == 0) {
-            menu = (MainMenu) LevelFactory.menu();
-            menuMusic.startMenuMusic();
-            menu.menuLoop();
-            menuMusic.stopMusic();
-            gameMusic.startGameMusic();
-        }
-
-        if (levelCounter == 1) {
-            Object[] gameObjects = LevelFactory.level1();
-            collisionDetector = new CollisionDetector(gameObjects);
-
-            for (Object object : gameObjects) {
-                if (object instanceof Picture) {
-                    background = (Picture) object;
-                }
-                if (object instanceof Platform[][]) {
-                    platforms = (Platform[][]) object;
-                }
-                if (object instanceof DonkeyZilla) {
-                    enemy = (DonkeyZilla) object;
-                }
-                if (object instanceof Projectile[]) {
-                    projectiles = (Projectile[]) object;
-                }
-                if (object instanceof Player) {
-                    player = (Player) object;
-                }
-                if (object instanceof Princess) {
-                    princess = (Princess) object;
-                }
-            }
-        }
-    }
-
-    public static void gameOver(){
-        gameOverMusic.startGameOverMusic();
-        player.getGuy().delete();
-        princess.delete();
-        enemy.delete();
+    private void renderStage() {
         background.draw();
 
-        int count = 0;
+        for (Platform[] arr : platforms) {
+            for (Platform platform : arr) {
+                if (platform != null) {
+                    platform.draw();
+                }
+            }
+        }
 
-        while(count < 20) {
-            background.load("resources/GameOver.jpg");
+        princess.draw();
+        player.draw();
+        enemy.draw();
+        projectiles[0].setMoving();
+    }
+
+    private void setupStage() {
+        princess = new Princess(2, 3);
+        player = new Player(4, 1);
+        enemy = new DonkeyZilla(25, 6);
+        background = new Picture(0, 0, AssetPaths.STAGE_BACKGROUND);
+        projectiles = ProjectileFactory.createProjectiles();
+        platforms = PlatformFactory.createPlatforms();
+    }
+
+    private void setupMenu() {
+        MainMenu menu = new MainMenu();
+        GameMusic.play(AssetPaths.MENU_MUSIC);
+        menu.menuLoop();
+        GameMusic.stopMusic();
+        GameMusic.play(AssetPaths.GAME_MUSIC);
+    }
+
+    private void endGame() {
+        showGameOver();
+
+        gameOverAnimation();
+
+        resetGameOverState();
+    }
+
+    private void resetGameOverState() {
+        gameOver = false;
+        levelCounter = -1;
+        background.delete();
+    }
+
+    private void win() {
+        showStageCleared();
+
+        showStageClearedAnimation();
+
+        showCredits();
+
+        System.exit(0);
+    }
+
+    private void showCredits() {
+        for (int i = 0; i < 10; i++) {
+            background.load(AssetPaths.CREDITS_SCREEN_1);
+
+            try {
+                Thread.sleep(800);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+
+            }
+            background.load(AssetPaths.CREDITS_SCREEN_2);
+        }
+    }
+
+    private void showStageClearedAnimation() {
+        String[] screens = {
+                AssetPaths.WIN_SCREEN_1,
+                AssetPaths.WIN_SCREEN_2,
+                AssetPaths.WIN_SCREEN_3
+        };
+
+        for (String screen : screens) {
+            background.load(screen);
+            try {
+                Thread.sleep(900);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void showStageCleared() {
+        GameMusic.play(AssetPaths.CREDITS_MUSIC);
+
+        player.getPlayerImage().delete();
+        princess.delete();
+        enemy.delete();
+
+        background.delete();
+        background.draw();
+        background.load(AssetPaths.CREDITS_SCREEN_1);
+    }
+
+    private void showGameOver() {
+        gameOver = true;
+
+        GameMusic.stopMusic();
+        GameMusic.play(AssetPaths.GAME_OVER_MUSIC);
+
+        player.getPlayerImage().delete();
+        princess.delete();
+        enemy.delete();
+
+        background.delete();
+        background.draw();
+        background.load(AssetPaths.GAME_OVER_SCREEN_1);
+    }
+
+    private void gameOverAnimation() {
+
+        for (int i = 0; i < 10; i++) {
+            background.load(AssetPaths.GAME_OVER_SCREEN_1);
             try {
                 Thread.sleep(30);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            background.load("resources/GameOverLast.jpg");
-            count++;
-            System.out.println(count);
+            background.load(AssetPaths.GAME_OVER_SCREEN_2);
         }
-        System.exit(0);
+        GameMusic.stopMusic();
+        background.delete();
     }
-
-    public static void win(){
-        creditsMusic.startCreditsMusic();
-        player.getGuy().delete();
-        princess.delete();
-        enemy.delete();
-        background.draw();
-
-        int count = 0;
-
-        background.load("resources/Win.jpg");
-        try {
-            Thread.sleep(900);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        background.load("resources/FirstWin.jpg");
-        try {
-            Thread.sleep(900);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        background.load("resources/LastWin.jpg");
-        try {
-            Thread.sleep(900);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        while(count < 20) {
-            background.load("resources/LastCredits.jpg");
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            background.load("resources/Credits.jpg");
-            count++;
-            System.out.println(count);
-        }
-        System.exit(0);
-    }
-
 }
