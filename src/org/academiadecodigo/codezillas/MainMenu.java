@@ -9,12 +9,12 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 class MainMenu {
 
     private boolean menu = true;
-    private Picture background = new Picture(0,0, AssetPaths.MENU_0);
+    private Picture background = new Picture(0, 0, AssetPaths.MENU_0);
     private MenuInput menuInput = new MenuInput(new MenuLogic(this));
 
-    void menuLoop(){
+    void menuLoop() {
         background.draw();
-        while(menu){
+        while (menu) {
             background.load(AssetPaths.MENU_1);
 
             try {
@@ -28,12 +28,12 @@ class MainMenu {
         background.delete();
     }
 
-    private void setMenu(boolean menu) {
+    void setMenu(boolean menu) {
         this.menu = menu;
     }
 
-    private class MenuInput{
-        MenuInput(KeyboardHandler menuLogic){
+    private class MenuInput {
+        public MenuInput(KeyboardHandler menuLogic) {
 
             Keyboard keyboard = new Keyboard(menuLogic);
 
@@ -54,16 +54,17 @@ class MainMenu {
     private class MenuLogic implements KeyboardHandler {
 
         private MainMenu menu;
-        MenuLogic(MainMenu menu){
+
+        MenuLogic(MainMenu menu) {
             this.menu = menu;
         }
 
         @Override
         public void keyPressed(KeyboardEvent keyboardEvent) {
-            if(keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE){
+            if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
                 menu.setMenu(false);
             }
-            if(keyboardEvent.getKey() == KeyboardEvent.KEY_L){
+            if (keyboardEvent.getKey() == KeyboardEvent.KEY_L) {
                 System.exit(0);
             }
         }

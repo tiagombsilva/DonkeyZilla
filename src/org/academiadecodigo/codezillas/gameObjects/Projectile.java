@@ -15,11 +15,7 @@ public class Projectile {
 
     public Projectile(int col, int row) {
         pos = new Position(col, row);
-<<<<<<< HEAD
-        fireball = new Picture(pos.colToX(),pos.rowToY(), "/resources/FireProjectile.png");
-=======
         fireball = new Picture(pos.colToX(), pos.rowToY(), AssetPaths.FIRE_BALL);
->>>>>>> dev
     }
 
     public boolean isMoving() {
@@ -70,6 +66,6 @@ public class Projectile {
     }
 
     Rectangle bounds(){
-        return new Rectangle(this.pos.colToX(),this.pos.rowToY(), Canvas.CELL_SIZE, Canvas.CELL_SIZE);
+        return new Rectangle(this.pos.colToX(),this.pos.rowToY(),Canvas.CELL_SIZE,Canvas.CELL_SIZE);
     }
 }

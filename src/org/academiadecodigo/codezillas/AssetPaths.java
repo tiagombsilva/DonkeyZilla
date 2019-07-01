@@ -13,8 +13,8 @@ public class AssetPaths {
 
     static final String STAGE_BACKGROUND = "resources/Background.png";
     public static final String STAGE_PLATFORM = "resources/Platform.png";
-    public static final String DONKEYZILLA_LEFT = "resources/GodzillaLeftDirection.png";
-    public static final String DONKEYZILLA_RIGHT = "resources/GodzillaRightDirection.png";
+    public static final String DONKEYZILLA_LEFT = "resources/GodzillaL.png";
+    public static final String DONKEYZILLA_RIGHT = "resources/GodzillaR.png";
 
     static final String CREDITS_MUSIC = "/creditsmusic.wav";
     static final String GAME_MUSIC = "/Nirvana8bit.wav";
