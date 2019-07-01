@@ -28,12 +28,12 @@ class MainMenu {
         background.delete();
     }
 
-    private void setMenu(boolean menu) {
+    void setMenu(boolean menu) {
         this.menu = menu;
     }
 
     private class MenuInput {
-        MenuInput(KeyboardHandler menuLogic) {
+        public MenuInput(KeyboardHandler menuLogic) {
 
             Keyboard keyboard = new Keyboard(menuLogic);
 
